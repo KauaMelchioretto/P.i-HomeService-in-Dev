@@ -1,7 +1,7 @@
 
 import React from 'react';
 import './App.css';
-import {Link, Routes, Navigate, Route, BrowserRouter as Router} from 'react-router-dom';
+import {Routes, Navigate, Route, BrowserRouter as Router} from 'react-router-dom';
 import Result from './pages/ResultScreen';
 import MainScreen from './components/MainScreen';
 import InitScreen from './pages/InitScreen';

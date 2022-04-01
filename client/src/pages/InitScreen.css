@@ -1,9 +1,7 @@
 
 .MainScreen--container
 {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  text-align: center;
 }
 
 .title
@@ -48,7 +46,6 @@
   left: 20vw;
   background-color: #ffffff;
   width: 61%;
-  height: 320px;
   border-radius: 20px;
   box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
   bottom: -10rem;
@@ -85,22 +82,18 @@
 {
   color: #fff;
   background-color: black;
-  width: 100px;
+  width: 135px;
   height: 15px;
   text-decoration: none;
   font-weight: bold;
   font-size: 15px;
-  padding: 10px;
-  text-align: center;
+  margin-left: 70%;
+  padding: 15px;
   transition: all ease 0.3s; 
-  align-items: center;
 }
 
 #register--button:hover
 {
-  height: 48px;
-  margin: 20px;
-  width: 120px;
-  background-color: #000000;
+ padding: 20px;
 }
 

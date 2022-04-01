@@ -1,13 +1,12 @@
 import React from 'react';
 import './MainScreen.css';
-import { NavLink , BrowserRouter as Router} from 'react-router-dom';
-import classes from './MainScreen.css';
+import './MainScreen.css';
 
 
 export default function MainScreen() {
         return(
+            <div>
 
-        <header className={classes.header}>
-        </header>   
+            </div>  
     );
 }
