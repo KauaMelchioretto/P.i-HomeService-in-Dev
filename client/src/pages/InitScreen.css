@@ -1,8 +1,6 @@
 .MainScreen--container
 {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  text-align: center;
 }
 
 .title
@@ -97,3 +95,4 @@
 {
  padding: 20px;
 }
+
