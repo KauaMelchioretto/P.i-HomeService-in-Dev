@@ -8,7 +8,7 @@ export default function InitScreen()
 {
     return (
 
-        <header className={classes.header}>
+        <div>
 
             <div className="MainScreen--container">
                 <h1 className='title'>Home Service</h1>
@@ -18,16 +18,19 @@ export default function InitScreen()
                 <span><img src={List} className='list--icon' alt='Search'/></span>
             </div>
 
-            <NavLink id='register--button' className={(navData) => (navData.isActive ? classes.active : 'button--search')} to='/resultados'>Cadastre seu serviço</NavLink>
+            <div>
+                <NavLink id='register--button' to='/registros'>Cadastre seu serviço</NavLink>
+            </div>
+
+
 
             <div className='fast--search'>
-                
-                <NavLink id='button--search' className={(navData) => (navData.isActive ? classes.active : 'button--search')} to='/resultados'>Encanador</NavLink>
-                <NavLink id='button--search' className={(navData) => (navData.isActive ? classes.active : 'button--search')} to='/resultados'>Eletricista</NavLink>
-                <NavLink id='button--search' className={(navData) => (navData.isActive ? classes.active : 'button--search')} to='/resultados'>Marceneiro</NavLink>
-        
-          </div>
-          </header>
+
+                <NavLink id='button--search' to='/resultados'>Encanador</NavLink>
+                <NavLink id='button--search' to='/resultados'>Eletricista</NavLink>
+                <NavLink id='button--search' to='/resultados'>Marceneiro</NavLink>
+
+            </div>
+        </div>
     );
 }
-

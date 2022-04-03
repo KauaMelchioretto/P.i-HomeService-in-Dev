@@ -5,6 +5,7 @@ import {Link, Routes, Navigate, Route, BrowserRouter as Router} from 'react-rout
 import Result from './pages/ResultScreen';
 import MainScreen from './components/MainScreen';
 import InitScreen from './pages/InitScreen';
+import RegisterScreen from './pages/RegisterScreen';
 
 
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<Navigate replace to='inicio'/>} />
           <Route path='/inicio' element={<InitScreen/>} />
           <Route path='/resultados' exact element={<Result/>} />
+          <Route path='/registros' element={<RegisterScreen/>} />
         </Routes>
       </Router>
       </main>

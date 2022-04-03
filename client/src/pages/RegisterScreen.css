@@ -1,0 +1,27 @@
+.Registro
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.title
+{
+    font-size: 40px;
+    padding: 10px 20px;
+}
+
+.box-register
+{
+  left: 20vw;
+  background-color: #ffffff;
+  width: 61%;
+  height: 200px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+  bottom: -10rem;
+  position: relative;
+  display:table;
+  padding: none;
+}
