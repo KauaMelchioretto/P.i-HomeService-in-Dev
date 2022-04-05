@@ -1,14 +1,16 @@
 import React from 'react';
 import './ResultScreen.css';
-import Image from '../img/eu.jpg'
+import UserImage from '../img/eu.jpg'
+import { NavLink } from 'react-router-dom';
+import WppIcon from '../img/WppIcon.webp';
 
 export default ResultScreen =>
 {
-    return(
+    return (
         <div>
-            
+
             <header className='header--container'>
-                 <h1 className='title'>Home Service</h1>
+                <h1 className='title'>Home Service</h1>
             </header>
 
             <div className='subtitle'>
@@ -17,16 +19,17 @@ export default ResultScreen =>
 
             <div className='result--information'>
 
-                <img className='img--user' src={Image}/>
+                <img className='img--user' src={UserImage} />
 
-                <div className='informations'>      
+                <div className='informations'>
                     <p>Profissão: Profissão</p>
                     <p>Nome: Nome do profissional.</p>
-                    <p>Descrição: Descrição do serviço.</p>
                     <p>Endereço de atuação: Endereço onde o serviço está sendo prestado.</p>
+                    <p><img src={WppIcon} width='20px' alt="" /> 9999999</p>
+                    <NavLink className='see--more' to="/servico">Ver Mais</NavLink>
                 </div>
             </div>
         </div>
-           
+
     );
 }

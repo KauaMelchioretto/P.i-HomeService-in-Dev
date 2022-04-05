@@ -43,10 +43,29 @@ a propriedade width:max-content; vai fazer o container variar de acordo com a qu
   width: max-content;
   box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
   margin-left: 5rem;
-  border-radius: 20px;
-  position: relative;
+  border-radius: 10px;
   align-items: center;
   padding: 15px;
   display: flex;
-  padding: none;
+  justify-content: center;
+  position: relative;
+  outline: none;
+  flex-direction: row;
+}
+
+.see--more
+{
+  color:  rgb(0, 0, 0);
+  background-color: rgb(173, 172, 172);
+  width: 135px;
+  height: 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px; 
+}
+
+.see--more:hover
+{
+  padding: 11px;
 }
