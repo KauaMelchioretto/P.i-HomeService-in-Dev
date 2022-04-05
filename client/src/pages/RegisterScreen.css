@@ -1,8 +1,6 @@
 .Registro
 {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    text-align: center;
 }
 
 
@@ -12,16 +10,66 @@
     padding: 10px 20px;
 }
 
-.box-register
+.register--section
 {
-  left: 20vw;
-  background-color: #ffffff;
-  width: 61%;
-  height: 200px;
-  border-radius: 20px;
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
-  bottom: -10rem;
-  position: relative;
-  display:table;
-  padding: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+form
+{
+    font-family: Arial;
+    color: black;
+}
+
+form div
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+form input, form textarea
+{
+    outline: unset;
+    padding: 20px;
+    width: 600px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+form input:focus, form textarea:focus
+{
+    background-color: #c79cf0;
+}
+
+.div-buttons-salvar
+{
+    display: flex;
+    position: absolute;
+    margin-top: 32%;
+    margin-right: 17%;
+
+}
+
+.div-buttons-descartar
+{
+    display: flex;
+    position: absolute;
+    margin-top: 32%;
+    margin-left: 17%;
+
+}
+
+button
+{
+    padding: 10px;
+    width: 317px;
+    background-color: #8a2be2;
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    
 }
