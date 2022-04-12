@@ -25,7 +25,9 @@ export default ServiceScreen => {
                     <NavLink className='Wpp--btn' to='' > <img src={WppIcon} alt="" width='25px' /> </NavLink>
                 </div>
             </div>
-
+        <div>
+        <NavLink to='/avaliacao' > Avaliação </NavLink>
+        </div>
         </div>
     );
 }
