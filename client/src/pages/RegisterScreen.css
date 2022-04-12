@@ -20,8 +20,13 @@
 
 form
 {
+    background-color: white;
+    border-radius: 20px;
+    padding: 60px;
     font-family: Arial;
     color: black;
+    position: absolute;
+    margin-bottom: 20px;
 }
 
 form div
@@ -36,7 +41,7 @@ form input, form textarea
     outline: unset;
     padding: 20px;
     width: 600px;
-    border: 1px solid black;
+    border: 1px solid rgb(189, 189, 189);
     border-radius: 10px;
 }
 
@@ -49,7 +54,7 @@ form input:focus, form textarea:focus
 {
     display: flex;
     position: absolute;
-    margin-top: 32%;
+    margin-top: 34%;
     margin-right: 17%;
 
 }
@@ -58,7 +63,7 @@ form input:focus, form textarea:focus
 {
     display: flex;
     position: absolute;
-    margin-top: 32%;
+    margin-top: 34%;
     margin-left: 17%;
 
 }
@@ -73,3 +78,6 @@ button
     color: white;
     
 }
+
+
+

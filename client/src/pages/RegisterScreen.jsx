@@ -4,16 +4,14 @@ import "./RegisterScreen.css";
 export default function RegisterScreen() {
 
     const [values, setValues] = useState();
-    const ChangeValues = (value) => 
-    {
+    const ChangeValues = (value) => {
         setValues(prevValue => ({
             ...prevValue,
             [value.target.name]: value.target.value,
         }));
     }
 
-    const RegisterService = () => 
-    {
+    const RegisterService = () => {
         console.log(values);
     }
 
@@ -21,9 +19,7 @@ export default function RegisterScreen() {
         <div>
             <div className="Registro">
                 <h1 className='title'>Home Service</h1>
-                <h2>Registre aqui seu serviço!</h2>
             </div>
-
             <section className="register--section">
                 <form>
                     <div className='box-register'>
@@ -51,7 +47,17 @@ export default function RegisterScreen() {
                         <input
                             id="cidade"
                             name="cidade"
-                            placeholder="Digite a cidade de atuação"
+                            placeholder="Principal"
+                            required="Text"
+                            onChange={ChangeValues}
+                        />
+                    </div>
+                    <div className='box-register'>
+                        <label>Cidade de atuação</label>
+                        <input
+                            id="cidade"
+                            name="cidade"
+                            placeholder="Secundaria (opcional)"
                             required="Text"
                             onChange={ChangeValues}
                         />
@@ -68,14 +74,20 @@ export default function RegisterScreen() {
                     </div>
                     <div className='box-register'>
                         <label>Descrição</label>
-                        <textarea rows="10" name="desc" required="text" />
+                        <textarea
+                            rows="8"
+                            name="desc"
+                            required="text"
+                            onChange={ChangeValues}
+                        />
                     </div>
                 </form>
+
                 <div className="div-buttons-salvar">
                     <button type="submit" onClick={() => RegisterService()}>Cadastrar</button>
                 </div>
                 <div className="div-buttons-descartar">
-                    <button type="submit">Descartar</button>
+                    <button type="reset">Descartar</button>
                 </div>
             </section>
         </div>
