@@ -1,0 +1,31 @@
+.Rating{
+    text-align: center;
+}
+
+.rating--section
+{
+    display: block;
+    margin:auto;
+    width: 30%;
+    
+}
+
+form input:focus, form textarea:focus
+{
+    background-color: #ffffff;
+}
+
+.TextArea{
+    border: 1px solid rgb(189,189,189);
+    resize: none;
+}
+.p-rating .p-rating-icon.pi-star-fill{
+    
+    color: #ffc629 !important;
+}
+.Rating--bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}

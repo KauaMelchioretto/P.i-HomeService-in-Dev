@@ -4,6 +4,9 @@ import UserImage from '../img/eu.jpg';
 import WppIcon from '../img/WppIcon.webp'
 import { NavLink } from 'react-router-dom';
 
+
+
+
 export default ServiceScreen => {
     return (
 
@@ -25,7 +28,10 @@ export default ServiceScreen => {
                     <NavLink className='Wpp--btn' to='' > <img src={WppIcon} alt="" width='25px' /> </NavLink>
                 </div>
             </div>
+        <div>
 
+        <NavLink to='/avaliacao' > Avaliação </NavLink>
+        </div>
         </div>
     );
 }
