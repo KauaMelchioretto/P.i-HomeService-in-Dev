@@ -11,12 +11,6 @@ import MainScreen from "./components/MainScreen";
 import InitScreen from "./pages/InitScreen";
 import RegisterScreen from "./pages/RegisterScreen";
 import ServiceScreen from "./pages/ServiceScreen";
-import RatingScreen from "./pages/RatingScreen";
-
-
-import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
-import "primereact/resources/primereact.min.css";                  //core css
-import "primeicons/primeicons.css";                                //icons
  
 
 function App() {
@@ -30,7 +24,6 @@ function App() {
             <Route path="/resultados" exact element={<ResultScreen />} />
             <Route path="/registros" element={<RegisterScreen />} />
             <Route path="/servico" element={<ServiceScreen />} />
-            <Route path="/avaliacao" element={<RatingScreen />} />
           </Routes>
         </Router>
       </main>

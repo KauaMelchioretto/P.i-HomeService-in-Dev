@@ -83,10 +83,10 @@ export default function RegisterScreen() {
                     </div>
                 </form>
 
-                <div className="div-buttons-salvar">
+                <div className="buttons-salvar">
                     <button type="submit" onClick={() => RegisterService()}>Cadastrar</button>
                 </div>
-                <div className="div-buttons-descartar">
+                <div className="buttons-descartar">
                     <button type="reset">Descartar</button>
                 </div>
             </section>

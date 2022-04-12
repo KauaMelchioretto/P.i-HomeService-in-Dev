@@ -17,6 +17,23 @@
     justify-content: center;
     height: 80vh;
 }
+.buttons-salvar
+{
+    display: flex;
+    position: absolute;
+    margin-top: 34%;
+    margin-right: 17%;
+
+}
+
+.buttons-descartar
+{
+    display: flex;
+    position: absolute;
+    margin-top: 34%;
+    margin-left: 17%;
+
+}
 
 form
 {
@@ -48,24 +65,6 @@ form input, form textarea
 form input:focus, form textarea:focus
 {
     background-color: #c79cf0;
-}
-
-.div-buttons-salvar
-{
-    display: flex;
-    position: absolute;
-    margin-top: 34%;
-    margin-right: 17%;
-
-}
-
-.div-buttons-descartar
-{
-    display: flex;
-    position: absolute;
-    margin-top: 34%;
-    margin-left: 17%;
-
 }
 
 button
