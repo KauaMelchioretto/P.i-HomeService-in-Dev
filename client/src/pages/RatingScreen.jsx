@@ -2,17 +2,11 @@ import React, { useState } from "react";
 import "./RatingScreen.css";
 import { Rating } from "primereact/rating";
 
-const labels = {
-  1: "muito ruim",
-  2: "ruim",
-  3: "mediano",
-  4: "bom",
-  5: "muito bom",
-};
 
-export default function RatingScreen() {
-  const [value, setValue] = useState(0);
-  const [hover, setHover] = useState(-1);
+  export default function RatingScreen() {
+    const [value, setValue] = useState(0);
+    const [hover, setHover] = useState(-1);
+  
 
   return (
     <div>

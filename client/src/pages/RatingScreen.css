@@ -16,6 +16,7 @@ form input:focus, form textarea:focus
 }
 
 .TextArea{
+    border: 1px solid rgb(189,189,189);
     resize: none;
 }
 .p-rating .p-rating-icon.pi-star-fill{

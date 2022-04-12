@@ -4,6 +4,9 @@ import UserImage from '../img/eu.jpg';
 import WppIcon from '../img/WppIcon.webp'
 import { NavLink } from 'react-router-dom';
 
+
+
+
 export default ServiceScreen => {
     return (
 
@@ -26,6 +29,7 @@ export default ServiceScreen => {
                 </div>
             </div>
         <div>
+
         <NavLink to='/avaliacao' > Avaliação </NavLink>
         </div>
         </div>
