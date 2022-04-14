@@ -3,6 +3,12 @@
     text-align: center;
 }
 
+.Card
+{
+    text-align: center;
+    position:relative;
+    margin-top: 10%;
+}
 
 .title
 {
