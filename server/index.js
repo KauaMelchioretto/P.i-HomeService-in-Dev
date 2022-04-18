@@ -18,13 +18,14 @@ app.post("/registros" , (request, response) =>{
     const { profession } = request.body;
     const { city } = request.body;
     const { city2 } = request.body;
-    const { tel } = request.body;
+    const { numberTel } = request.body;
     const { description } = request.body;
 
-    let SQL = "INSERT INTO services ( name, profession, city, city2, tel, description) VALUES (?,?,?,?,?,?)";
+    let SQL = "INSERT INTO services ( name, profession, city, city2, numberTel, description) VALUES (?,?,?,?,?,?)";
     
-    dataBase.query(SQL, [name, profession, city, city2, tel, description], (err, result) => {
-        console.log(err);
+    dataBase.query(SQL, [name, profession, city, city2, numberTel, description], (err, result) => {
+        if (err) console.log(err);
+        else console.log(result);
     })
 });
 
@@ -36,6 +37,19 @@ app.get("/getCards", (request, response) => {
         else response.send(result);
     });
 });
+
+app.post("/resultados", (request, result) => {
+    
+    const { information } = request.body;
+
+    let SQL = `SELECT * FROM services WHERE name LIKE ?`;
+    
+    dataBase.query(SQL , [information], (err, result) => {
+        if (err) console.log(err)
+        else console.log(result);
+    })
+});
+
 
 app.listen(3001, () => {
     console.log("rodando server");

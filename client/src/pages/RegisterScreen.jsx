@@ -7,6 +7,7 @@ export default function RegisterScreen() {
 
     const [values, setValues] = useState();
     const [listServices, setListServices] = useState();
+    
     const ChangeValues = (value) => {
         setValues(prevValue => ({
             ...prevValue,
@@ -20,7 +21,7 @@ export default function RegisterScreen() {
         profession: values.profession,
         city : values.city,
         city2: values.city2,
-        tel: values.numberTel,
+        numberTel: values.numberTel,
         description: values.description,
         }).then((response) => {
             console.log(response);
@@ -111,10 +112,18 @@ export default function RegisterScreen() {
             </section>
 
             <div className="Card">
-                {typeof listServices != "undefined" && listServices.map((value) =>{
-                return <Card></Card>;
+                {typeof listServices !== "undefined" && listServices.map((value) =>{
+                return <Card key={value.id} listCard={listServices} setListServices={setListServices}
+                id={value.id}
+                name={value.name}
+                profession={value.profession}
+                city={value.city}
+                city2={value.city2}
+                numberTel={value.numberTel}
+                description={value.description}></Card>;
                 }) }
             </div>
+           
         </div>
 
     );
