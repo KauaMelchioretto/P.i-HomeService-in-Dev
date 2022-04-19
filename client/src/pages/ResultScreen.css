@@ -40,13 +40,12 @@ a propriedade width:max-content; vai fazer o container variar de acordo com a qu
 .result--information
 {
   background-color: #fff;
-  width: max-content;
   box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
   margin-left: 5rem;
   border-radius: 10px;
   align-items: center;
   padding: 15px;
-  display: flex;
+  display: block;
   justify-content: center;
   position: relative;
   outline: none;
@@ -69,3 +68,4 @@ a propriedade width:max-content; vai fazer o container variar de acordo com a qu
 {
   padding: 11px;
 }
+

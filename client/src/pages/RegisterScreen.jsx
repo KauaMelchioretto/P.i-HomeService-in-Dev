@@ -73,7 +73,7 @@ export default function RegisterScreen() {
                         />
                     </div>
                     <div className='box-register'>
-                        <label>Cidade de atuação</label>
+                        <label>Cidade de atuação (opcional)</label>
                         <input
                             id="city2"
                             name="city2"
@@ -120,7 +120,8 @@ export default function RegisterScreen() {
                 city={value.city}
                 city2={value.city2}
                 numberTel={value.numberTel}
-                description={value.description}></Card>;
+                description={value.description}>
+                </Card>;
                 }) }
             </div>
            

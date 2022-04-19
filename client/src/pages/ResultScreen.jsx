@@ -1,10 +1,23 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import "./ResultScreen.css";
 import UserImage from "../img/eu.jpg";
 import { NavLink } from "react-router-dom";
 import WppIcon from "../img/WppIcon.webp";
+import CardResult from "../components/Card";
+import Axios from 'axios'
 
 export default function ResultScreen() {
+
+  const [listResults, setListResults] = useState();
+
+  useState(() => {
+    Axios.get("http://localhost:3001/getResultados").then((response) => {
+      console.log(response);
+      setListResults(response.data);
+    });
+  }, []);
+
+
   return (
     <div>
       <header className="header--container">
@@ -13,6 +26,18 @@ export default function ResultScreen() {
 
       <div className="subtitle">
         <h1>Resultados</h1>
+      </div>
+
+      <div className="result--information">
+        {typeof listResults !== "undefined" && listResults.map((value) => {
+          return <CardResult key={value.id} listCard={listResults} setListResults={setListResults}
+          id={value.id}
+          name={value.name}
+          profession={value.profession}
+          city={value.city}
+          >
+          </CardResult>;
+        })}
       </div>
 
       <div className="result--information">

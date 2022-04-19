@@ -19,7 +19,6 @@ export default function InitScreen() {
         Axios.post("http://localhost:3001/resultados", {
             information: values.information,
         }).then((response) => {
-            console.log(response);
         });
     };
 
@@ -41,10 +40,10 @@ export default function InitScreen() {
                         onChange={handleChangeValues}
                     ></input>
 
-                    <button className='search--icon' onClick={() => SearchServices()}> pesquisar </button>
+                    {/* <button className='search--icon' onClick={() => SearchServices()}> pesquisar </button> */}
 
-                    {/* <NavLink to='/resultados'
-                    onClick={() => SearchServices()}><img src={Search} className='search--icon' alt='Search' /></NavLink> */}
+                    <NavLink to='/resultados'
+                    onClick={() => SearchServices()}><img src={Search} className='search--icon' alt='Search' /></NavLink>
 
                     <img src={List} className='list--icon' alt='Search' />
 
