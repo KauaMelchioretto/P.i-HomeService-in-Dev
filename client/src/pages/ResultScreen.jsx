@@ -9,6 +9,7 @@ import Axios from 'axios'
 export default function ResultScreen() {
 
   const [listResults, setListResults] = useState();
+  const setVoid = useState();
 
   useState(() => {
     Axios.get("http://localhost:3001/getResultados").then((response) => {
@@ -16,7 +17,6 @@ export default function ResultScreen() {
       setListResults(response.data);
     });
   }, []);
-
 
   return (
     <div>

@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, setState, useCallback } from "react";
 import "./RegisterScreen.css";
 import Axios from "axios";
 import Card from "../components/Card";
 
 export default function RegisterScreen() {
 
-    const [values, setValues] = useState();
+    const [values, setValues] = useState({
+        name: '',
+        profession: '',
+        profession: '',
+        city: '',
+        city2: '',
+        numberTel: '',
+        description: '',
+    });
     const [listServices, setListServices] = useState();
-    
+
+
     const ChangeValues = (value) => {
         setValues(prevValue => ({
             ...prevValue,
@@ -17,22 +26,36 @@ export default function RegisterScreen() {
 
     const RegisterService = () => {
         Axios.post("http://localhost:3001/registros", {
-        name: values.name,
-        profession: values.profession,
-        city : values.city,
-        city2: values.city2,
-        numberTel: values.numberTel,
-        description: values.description,
-        }).then((response) => {
-            console.log(response);
-        });
-    }
+            name: values.name,
+            profession: values.profession,
+            city: values.city,
+            city2: values.city2,
+            numberTel: values.numberTel,
+            description: values.description,
+        }).then(() => {
+    
+            }); 
+        };
+    
 
-    useEffect(() => { 
+    const clear = () => {
+        setValues({
+            name: '',
+            profession: '',
+            profession: '',
+            city: '',
+            city2: '',
+            numberTel: '',
+            description: '',
+         }); console.log(values);
+         console.log(values); } 
+
+
+    useEffect(() => {
         Axios.get("http://localhost:3001/getCards").then((response) => {
             setListServices(response.data);
         });
-    }, []);
+    }, [listServices]);
 
 
     return (
@@ -50,6 +73,7 @@ export default function RegisterScreen() {
                             placeholder="Digite seu nome"
                             required="Text"
                             onChange={ChangeValues}
+                            value={values.name}
                         />
                     </div>
                     <div className='box-register'>
@@ -60,6 +84,7 @@ export default function RegisterScreen() {
                             placeholder="Digite sua profissão"
                             required="Text"
                             onChange={ChangeValues}
+                            value={values.profession}
                         />
                     </div>
                     <div className='box-register'>
@@ -70,6 +95,7 @@ export default function RegisterScreen() {
                             placeholder="Principal"
                             required="Text"
                             onChange={ChangeValues}
+                            value={values.city}
                         />
                     </div>
                     <div className='box-register'>
@@ -80,6 +106,7 @@ export default function RegisterScreen() {
                             placeholder="Secundaria (opcional)"
                             required="Text"
                             onChange={ChangeValues}
+                            values={values.city2}
                         />
                     </div>
                     <div className='box-register'>
@@ -90,6 +117,7 @@ export default function RegisterScreen() {
                             placeholder="Digite o número de telefone"
                             required="Text"
                             onChange={ChangeValues}
+                            values={values.numberTel}
                         />
                     </div>
                     <div className='box-register'>
@@ -99,12 +127,13 @@ export default function RegisterScreen() {
                             name="description"
                             required="text"
                             onChange={ChangeValues}
+                            values={values.description}
                         />
                     </div>
                 </form>
 
                 <div className="buttons-salvar">
-                    <button type="submit" onClick={() => RegisterService()}>Cadastrar</button>
+                    <button type="submit" onClick={() => clear()}>Cadastrar</button>
                 </div>
                 <div className="buttons-descartar">
                     <button type="reset">Descartar</button>
@@ -112,19 +141,19 @@ export default function RegisterScreen() {
             </section>
 
             <div className="Card">
-                {typeof listServices !== "undefined" && listServices.map((value) =>{
-                return <Card key={value.id} listCard={listServices} setListServices={setListServices}
-                id={value.id}
-                name={value.name}
-                profession={value.profession}
-                city={value.city}
-                city2={value.city2}
-                numberTel={value.numberTel}
-                description={value.description}>
-                </Card>;
-                }) }
+                {typeof listServices !== "undefined" && listServices.map((value) => {
+                    return <Card key={value.id} listCard={listServices} setListServices={setListServices}
+                        id={value.id}
+                        name={value.name}
+                        profession={value.profession}
+                        city={value.city}
+                        city2={value.city2}
+                        numberTel={value.numberTel}
+                        description={value.description}>
+                    </Card>;
+                })}
             </div>
-           
+
         </div>
 
     );
