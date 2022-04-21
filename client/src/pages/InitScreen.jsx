@@ -18,7 +18,6 @@ export default function InitScreen() {
     const SearchServices = () => {
         Axios.post("http://localhost:3001/resultados", {
             information: values.information,
-        }).then((response) => {
         });
     };
 

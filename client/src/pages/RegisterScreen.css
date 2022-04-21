@@ -1,3 +1,4 @@
+
 .Registro
 {
     text-align: center;
@@ -20,23 +21,15 @@
     align-items: center;
     justify-content: center;
     height: 80vh;
-}
-.buttons-salvar
-{
-    display: flex;
-    position: absolute;
-    margin-top: 34%;
-    margin-right: 17%;
-
+    margin-top: 10%;
 }
 
-.buttons-descartar
+.buttons
 {
-    display: flex;
-    position: absolute;
-    margin-top: 34%;
-    margin-left: 17%;
-
+    display: inline;
+    position: relative;
+    text-align: center;
+    margin-top: 7%;
 }
 
 form
@@ -57,6 +50,12 @@ form div
     margin-bottom: 10px;
 }
 
+textarea
+{
+    max-width: 600px;
+    max-height: max-content;
+}
+
 form input, form textarea
 {
     outline: unset;
@@ -74,12 +73,12 @@ form input:focus, form textarea:focus
 button
 {
     padding: 10px;
-    width: 317px;
+    width: 135px;
     background-color: #8a2be2;
     cursor: pointer;
     border-radius: 10px;
     color: white;
-    
+    margin-left: 20%;
 }
 
 

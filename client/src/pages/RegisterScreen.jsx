@@ -32,13 +32,22 @@ export default function RegisterScreen() {
             city2: values.city2,
             numberTel: values.numberTel,
             description: values.description,
-        }).then(() => {
-    
-            }); 
-        };
-    
+        }).then((response) => {
+            if (response) {
+                setValues({
+                    name: '',
+                    profession: '',
+                    profession: '',
+                    city: '',
+                    city2: '',
+                    numberTel: '',
+                    description: '',
+                })
+            };
+        });
+    }
 
-    const clear = () => {
+    const clearInputs = () => {
         setValues({
             name: '',
             profession: '',
@@ -47,9 +56,8 @@ export default function RegisterScreen() {
             city2: '',
             numberTel: '',
             description: '',
-         }); console.log(values);
-         console.log(values); } 
-
+        })
+    }
 
     useEffect(() => {
         Axios.get("http://localhost:3001/getCards").then((response) => {
@@ -106,7 +114,7 @@ export default function RegisterScreen() {
                             placeholder="Secundaria (opcional)"
                             required="Text"
                             onChange={ChangeValues}
-                            values={values.city2}
+                            value={values.city2}
                         />
                     </div>
                     <div className='box-register'>
@@ -117,7 +125,7 @@ export default function RegisterScreen() {
                             placeholder="Digite o número de telefone"
                             required="Text"
                             onChange={ChangeValues}
-                            values={values.numberTel}
+                            value={values.numberTel}
                         />
                     </div>
                     <div className='box-register'>
@@ -127,18 +135,20 @@ export default function RegisterScreen() {
                             name="description"
                             required="text"
                             onChange={ChangeValues}
-                            values={values.description}
+                            value={values.description}
                         />
                     </div>
-                </form>
 
-                <div className="buttons-salvar">
-                    <button type="submit" onClick={() => clear()}>Cadastrar</button>
-                </div>
-                <div className="buttons-descartar">
-                    <button type="reset">Descartar</button>
-                </div>
+                    <div className="buttons">
+                        <button onClick={() => RegisterService()}>Cadastrar</button>
+                        <button type="reset" onClick={() => clearInputs()}>Descartar</button>
+                    </div>
+                </form>
             </section>
+
+
+
+
 
             <div className="Card">
                 {typeof listServices !== "undefined" && listServices.map((value) => {

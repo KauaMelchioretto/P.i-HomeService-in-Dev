@@ -9,14 +9,15 @@ import Axios from 'axios'
 export default function ResultScreen() {
 
   const [listResults, setListResults] = useState();
-  const setVoid = useState();
 
-  useState(() => {
+
+  useEffect(() => {
     Axios.get("http://localhost:3001/getResultados").then((response) => {
-      console.log(response);
-      setListResults(response.data);
-    });
-  }, []);
+        setListResults(response.data);
+      });
+      // return () => clearsetListResults(setListResults);
+  }, [listResults]);
+
 
   return (
     <div>
@@ -31,10 +32,10 @@ export default function ResultScreen() {
       <div className="result--information">
         {typeof listResults !== "undefined" && listResults.map((value) => {
           return <CardResult key={value.id} listCard={listResults} setListResults={setListResults}
-          id={value.id}
-          name={value.name}
-          profession={value.profession}
-          city={value.city}
+            id={value.id}
+            name={value.name}
+            profession={value.profession}
+            city={value.city}
           >
           </CardResult>;
         })}
