@@ -140,30 +140,24 @@ export default function RegisterScreen() {
                     </div>
 
                     <div className="buttons">
-                        <button onClick={() => RegisterService()}>Cadastrar</button>
-                        <button type="reset" onClick={() => clearInputs()}>Descartar</button>
+                        <button className="action--buttons" onClick={() => RegisterService()}>Cadastrar</button>
+                        <button className="action--buttons" type="reset" onClick={() => clearInputs()}>Descartar</button>
                     </div>
                 </form>
             </section>
-
-
-
-
-
             <div className="Card">
-                {typeof listServices !== "undefined" && listServices.map((value) => {
-                    return <Card key={value.id} listCard={listServices} setListServices={setListServices}
-                        id={value.id}
-                        name={value.name}
-                        profession={value.profession}
-                        city={value.city}
-                        city2={value.city2}
-                        numberTel={value.numberTel}
-                        description={value.description}>
+                {typeof listServices !== "undefined" && listServices.map((values) => {
+                    return <Card key={values.id} listCard={listServices} setListServices={setListServices}
+                        id={values.id}
+                        name={values.name}
+                        profession={values.profession}
+                        city={values.city}
+                        city2={values.city2}
+                        numberTel={values.numberTel}
+                        description={values.description}>
                     </Card>;
                 })}
             </div>
-
         </div>
 
     );

@@ -56,16 +56,17 @@ a propriedade width:max-content; vai fazer o container variar de acordo com a qu
 {
   color:  rgb(0, 0, 0);
   background-color: rgb(173, 172, 172);
-  width: 135px;
+  width: 80px;
   height: 15px;
   text-decoration: none;
   font-weight: bold;
   font-size: 15px;
-  padding: 10px; 
+  padding: 8px; 
+  display: block;
 }
 
 .see--more:hover
 {
-  padding: 11px;
+  padding: 10px;
 }
 

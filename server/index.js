@@ -39,14 +39,14 @@ app.get("/getCards", (request, response) => {
     });
 });
 
-app.post("/resultados", (request) => {
+app.post("/resultados", (request,response) => {
     const { information } = request.body;
 
-    SQL = `SELECT * FROM services WHERE LOCATE (?, name) > 0 OR LOCATE (?, profession) > 0 OR LOCATE (?, city) > 0 OR LOCATE (?, city2) > 0 `;
+    SQL = `SELECT idservices , name, profession, city FROM services WHERE LOCATE (?, name) > 0 OR LOCATE (?, profession) > 0 OR LOCATE (?, city) > 0 OR LOCATE (?, city2) > 0 `;
 
     dataBase.query(SQL, [information, information, information, information], (err, result) => {
         if (err) console.log(err);
-        else app.get("/getResultados", (request ,response) => {response.send(result);}), console.log(result);
+        else response.send(result), console.log(result);
     });
 });
 

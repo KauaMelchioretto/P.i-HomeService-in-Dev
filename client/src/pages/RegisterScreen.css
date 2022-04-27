@@ -70,7 +70,7 @@ form input:focus, form textarea:focus
     background-color: #c79cf0;
 }
 
-button
+.action--buttons
 {
     padding: 10px;
     width: 135px;
