@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export default function CardResult(props) {
     
   console.log(props);
-  {
+  { 
     return (
       <div className="card--container">
         <h1 className="card--name">Nome: {props.name}</h1>

@@ -1,16 +1,18 @@
-.MainScreen--container
-{
-  text-align: center;
+.container{
+  display: block;
 }
 
-.title
-{
+.header--container {
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.title {
   font-size: 40px;
   padding: 10px 20px;
 }
 
-.search--input
-{
+.search--input {
   display: block;
   width: 60%;
   position: absolute;
@@ -21,64 +23,33 @@
   outline: none;
 }
 
-.search--icon
-{
-  display: block;
+.search--icon {
   position: absolute;
-  left: 76%;
-  top: 20%;
-  padding: 8px;
+  left: 75%;
+  margin-top: 7vh;
+  padding: 15px;
+  background-image: url(../img/search_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
 }
 
-.list--icon
-{
-  display: block;
+.list--icon {
   position: absolute;
   left: 78%;
-  top: 20%;
-  padding: 8px;
+  margin-top: 7vh;
+  padding: 15px;
+  background-image: url(../img/list_icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
 }
 
-
-.fast--search
-{
-  left: 20vw;
-  background-color: #ffffff;
-  width: 61%;
-  border-radius: 20px;
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
-  bottom: -10rem;
-  position: relative;
-  display:table;
-  padding: none;
-}
-
-#button--search
-{
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
-  color: black;
-  width: 90%;
-  height: 40px;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 10px;
-  margin: 30px;
-  transition: all ease 0.3s; 
-  position: relative;
-  align-items: center;
-  display: flex;
-}
-
-#button--search:hover
-{
-  height: 48px;
-  margin: 20px;
-  width: 92%;
-  background-color: #f0ebf3;
-}
-
-#register--button
-{
+#register--button {
   color: #fff;
   background-color: black;
   width: 135px;
@@ -88,11 +59,48 @@
   font-size: 15px;
   margin-left: 70%;
   padding: 15px;
-  transition: all ease 0.3s; 
+  transition: all ease 0.3s;
+  position: relative;
 }
 
-#register--button:hover
-{
- padding: 20px;
+#register--button:hover {
+  padding: 20px;
+}
+
+
+.fast--search {
+  left: 20vw;
+  background-color: #ffffff;
+  width: 61%;
+  border-radius: 20px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  bottom: -10rem;
+  position: relative;
+  display: table;
+  padding: none;
+  text-align: center;
+}
+
+#fast-button-search {
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+  color: black;
+  width: 90%;
+  height: 40px;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  margin: 30px;
+  transition: all ease 0.3s;
+  position: relative;
+  align-items: center;
+  display: flex;
+}
+
+#fast-button-search:hover {
+  height: 48px;
+  width: 92%;
+  padding: 20px;
+  background-color: #f0ebf3;
 }
 

@@ -7,8 +7,7 @@ import Axios from "axios";
 import * as JSURL from "jsurl";
 
 export default function InitScreen() {
-  const [values, setValues] = useState();
-  const [listResults, setListResults] = useState();
+  const [values, setValues] = useState({});
   const navigate = useNavigate();
 
   const handleChangeValues = (value) => {
@@ -21,35 +20,49 @@ export default function InitScreen() {
   const SearchServices = () => {
     Axios.post("http://localhost:3001/resultados", {
       information: values.information,
-    }).then ((response) => {
+    }).then((response) => {
       const data = JSURL.stringify(response.data);
-      navigate(`/resultados?professional=${data ?? ""}`);
+      if (data != "~'" && data != "~(~)") {
+        navigate(`/resultados?professional=${data ?? ""}`);
+      } else {
+        window.alert("Insira uma informação para pesquisa!");
+      }
+    });
+  };
+
+  const SearchServicesVoid = (param) => {
+    Axios.post("http://localhost:3001/resultados", {
+      information: param,
+    }).then((response) => {
+      const data = JSURL.stringify(response.data);
+      data != "~(~)"
+        ? navigate(`/resultados?professional=${data ?? ""}`)
+        : window.alert("Sem resultados");
     });
   };
 
   {
     return (
-      <div>
-        <header className="MainScreen--container">
+      <div className="container">
+        <header className="header--container">
           <h1 className="title">Home Service</h1>
           <input
+            className="search--input"
             data-ls-module="charCounter"
             id="information"
             name="information"
-            className="search--input"
             type="text"
             placeholder="Pesquise aqui!"
             maxLength={100}
             onChange={handleChangeValues}
           ></input>
 
-          <button className="search--icon"
+          <button
+            className="search--icon"
             onClick={() => SearchServices()}
-          >
-            <img src={Search} className="search--icon" alt="Search" />
-          Buscar </button>
+          ></button>
 
-          <img src={List} className="list--icon" alt="Search" />
+          <button className="list--icon" alt="search"></button>
         </header>
 
         <div>
@@ -59,15 +72,30 @@ export default function InitScreen() {
         </div>
 
         <section className="fast--search">
-          <NavLink id="button--search" to="/resultados">
+          <h1>Busca Rápida</h1>
+
+          <button
+            id="fast-button-search"
+            onClick={() => SearchServicesVoid("Encanador")}
+            to="/resultados"
+            value={2}
+          >
             Encanador
-          </NavLink>
-          <NavLink id="button--search" to="/resultados">
+          </button>
+          <button
+            id="fast-button-search"
+            onClick={() => SearchServicesVoid("Eletrecista")}
+            to="/resultados"
+          >
             Eletricista
-          </NavLink>
-          <NavLink id="button--search" to="/resultados">
+          </button>
+          <button
+            id="fast-button-search"
+            onClick={() => SearchServicesVoid("Marceneiro")}
+            to="/resultados"
+          >
             Marceneiro
-          </NavLink>
+          </button>
         </section>
       </div>
     );
