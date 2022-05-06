@@ -26,7 +26,7 @@
 .search--icon {
   position: absolute;
   left: 75%;
-  margin-top: 7vh;
+  margin-top: 11vh;
   padding: 15px;
   background-image: url(../img/search_icon.svg);
   background-repeat: no-repeat;
@@ -39,7 +39,7 @@
 .list--icon {
   position: absolute;
   left: 78%;
-  margin-top: 7vh;
+  margin-top: 11vh;
   padding: 15px;
   background-image: url(../img/list_icon.svg);
   background-repeat: no-repeat;

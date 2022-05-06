@@ -4,12 +4,15 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const { response } = require("express");
 
+
 const dataBase = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "senha",
+    password: "aluno",
     database: "crudservices",
 });
+
+
 
 app.use(cors());
 app.use(express.json());
@@ -41,13 +44,15 @@ app.get("/getCards", (request, response) => {
 
 app.post("/resultados", (request,response) => {
     const { information } = request.body;
-    if(information != null){
+    if(information != null && information != ""){
 
     SQL = `SELECT idservices , name, profession, city FROM services WHERE LOCATE (?, name) > 0 OR LOCATE (?, profession) > 0 OR LOCATE (?, city) > 0 OR LOCATE (?, city2) > 0 `;
 
     dataBase.query(SQL, [information, information, information, information], (err, result) => {
         if (err) console.log(err);
         else response.send(result), console.log(result);
+        result = "";
+        console.log(result);
     });} else {response.send()}
 });
 

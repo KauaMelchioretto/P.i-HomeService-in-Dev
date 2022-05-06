@@ -17,6 +17,8 @@ export default function InitScreen() {
     }));
   };
 
+  console.log(values.information);
+
   const SearchServices = () => {
     Axios.post("http://localhost:3001/resultados", {
       information: values.information,
@@ -24,7 +26,10 @@ export default function InitScreen() {
       const data = JSURL.stringify(response.data);
       if (data != "~'" && data != "~(~)") {
         navigate(`/resultados?professional=${data ?? ""}`);
-      } else {
+        data = "";
+      } if(data == "~(~)") {
+        window.alert("Sem resultados!");
+      } else { 
         window.alert("Insira uma informação para pesquisa!");
       }
     });

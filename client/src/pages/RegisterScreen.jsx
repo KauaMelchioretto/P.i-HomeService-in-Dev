@@ -2,6 +2,7 @@ import React, { useState, useEffect, setState, useCallback } from "react";
 import "./RegisterScreen.css";
 import Axios from "axios";
 import Card from "../components/Card";
+import { NavLink } from "react-router-dom";
 
 export default function RegisterScreen() {
   const [values, setValues] = useState({
@@ -90,6 +91,7 @@ export default function RegisterScreen() {
       <div>
         <div className="Registro">
           <h1 className="title">Home Service</h1>
+          <NavLink to='/inicio'>click here</NavLink>
         </div>
         <section className="register--section">
           <form>
