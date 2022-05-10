@@ -1,7 +1,7 @@
 import React, { useState, useEffect, setState, useCallback } from "react";
 import "./RegisterScreen.css";
 import Axios from "axios";
-import Card from "../components/Card";
+import CardRegister from "../components/CardRegister";
 
 export default function RegisterScreen() {
   const [values, setValues] = useState({
@@ -180,7 +180,7 @@ export default function RegisterScreen() {
           {typeof listServices !== "undefined" &&
             listServices.map((values) => {
               return (
-                <Card
+                <CardRegister
                   key={values.id}
                   listCard={listServices}
                   setListServices={setListServices}
@@ -191,7 +191,7 @@ export default function RegisterScreen() {
                   city2={values.city2}
                   numberTel={values.numberTel}
                   description={values.description}
-                ></Card>
+                ></CardRegister>
               );
             })}
         </div>

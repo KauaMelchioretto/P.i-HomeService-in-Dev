@@ -1,46 +1,37 @@
-.header--container h1:nth-child(1)
-{
+.header--container h1:nth-child(1) {
   font-size: 40px;
   letter-spacing: 0.5px;
 }
 
-.subtitle
-{
+.subtitle {
   margin-left: 5rem;
 }
-.header--container
-{
+.header--container {
   text-align: center;
   line-height: 15px;
 }
 
-.img--user
-{
+.img--user {
   width: 120px;
   height: auto;
   position: static;
   bottom: -30px;
 }
 
-.informations
-{
+.informations {
   margin-left: 20px;
 }
 
-.informations p:nth-child(1)
-{
+.informations p:nth-child(1) {
   margin-top: -10px;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
 }
 
-/*Mold de container onde será retornado as informações que os próprios prestadores de serviços cadastraram
-a propriedade width:max-content; vai fazer o container variar de acordo com a quantidade de informações*/
-.result--information
-{
+.result--information {
   background-color: #fff;
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
   margin-left: 5rem;
   border-radius: 10px;
   align-items: center;
@@ -52,21 +43,18 @@ a propriedade width:max-content; vai fazer o container variar de acordo com a qu
   flex-direction: row;
 }
 
-.see--more
-{
-  color:  rgb(0, 0, 0);
+.see--more {
+  color: rgb(0, 0, 0);
   background-color: rgb(173, 172, 172);
-  width: 80px;
-  height: 15px;
   text-decoration: none;
   font-weight: bold;
   font-size: 15px;
-  padding: 8px; 
-  display: block;
+  padding: 8px;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
 }
 
-.see--more:hover
-{
+.see--more:hover {
   padding: 10px;
 }
-

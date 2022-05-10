@@ -41,13 +41,13 @@ app.get("/getCards", (request, response) => {
 
 app.post("/resultados", (request,response) => {
     const { information } = request.body;
-    if(information != null){
+    if(information != null && information != " " && information != ""){
 
-    SQL = `SELECT idservices , name, profession, city FROM services WHERE LOCATE (?, name) > 0 OR LOCATE (?, profession) > 0 OR LOCATE (?, city) > 0 OR LOCATE (?, city2) > 0 `;
+    SQL = `SELECT idservices , name, profession, city, numberTel, description FROM services WHERE LOCATE (?, name) > 0 OR LOCATE (?, profession) > 0 OR LOCATE (?, city) > 0 OR LOCATE (?, city2) > 0 `;
 
     dataBase.query(SQL, [information, information, information, information], (err, result) => {
         if (err) console.log(err);
-        else response.send(result), console.log(result);
+        else response.send(result)
     });} else {response.send()}
 });
 

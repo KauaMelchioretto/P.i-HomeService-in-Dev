@@ -1,9 +1,16 @@
 import React from "react";
 import "../pages/ResultScreen.css";
-import { NavLink } from "react-router-dom";
+import * as JSURL from "jsurl";
+import { useNavigate } from "react-router-dom";
 
 export default function CardResult(props) {
-    
+  const navigate = useNavigate();
+
+  const seeMore = () => {
+    const data = JSURL.stringify(props);
+    navigate(`/servico?professional=${data ?? ""}`);
+}
+
   console.log(props);
   { 
     return (
@@ -11,9 +18,9 @@ export default function CardResult(props) {
         <h1 className="card--name">Nome: {props.name}</h1>
         <p className="card--profession">Profissão: {props.profession}</p>
         <p className="card--city">Cidade: {props.city}</p>
-        <NavLink className="see--more" to="/servico">
+        <button className="see--more" onClick={() => seeMore()}>
           ver mais...
-        </NavLink>
+        </button>
       </div>
     );
   }

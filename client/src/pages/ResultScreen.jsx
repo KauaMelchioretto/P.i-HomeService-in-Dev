@@ -1,14 +1,12 @@
 import { React } from "react";
 import "./ResultScreen.css";
-import UserImage from "../img/eu.jpg";
-import { NavLink } from "react-router-dom";
-import WppIcon from "../img/WppIcon.webp";
 import CardResult from "../components/CardResult";
 import useQueryParam from "../hooks/useQueryParam";
 
-export default function ResultScreen(props) {
+export default function ResultScreen() {
   const [professional, setProfessional] = useQueryParam("professional");
-
+  console.log(professional);
+  console.log(typeof professional);
   return (
     <div>
       <header className="header--container">
@@ -28,7 +26,11 @@ export default function ResultScreen(props) {
               name={value.name}
               profession={value.profession}
               city={value.city}
-            ></CardResult>
+              city2={value.city}
+              numberTel={value.numberTel}
+              description={value.description}
+            >
+            </CardResult>
           ))}
       </div>
     </div>
