@@ -90,6 +90,7 @@ export default function RegisterScreen() {
       <div>
         <div className="Registro">
           <h1 className="title">Home Service</h1>
+          <NavLink to='/inicio'>click here</NavLink>
         </div>
         <section className="register--section">
           <form>

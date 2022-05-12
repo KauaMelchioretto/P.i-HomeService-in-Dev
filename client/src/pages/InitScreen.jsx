@@ -17,6 +17,8 @@ export default function InitScreen() {
     }));
   };
 
+  console.log(values.information);
+
   const SearchServices = () => {
     Axios.post("http://localhost:3001/resultados", {
       information: values.information,
