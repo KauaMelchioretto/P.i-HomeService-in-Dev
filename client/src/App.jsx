@@ -7,11 +7,9 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 import ResultScreen from "./pages/ResultScreen";
-import MainScreen from "./components/MainScreen";
 import InitScreen from "./pages/InitScreen";
 import RegisterScreen from "./pages/RegisterScreen";
 import ServiceScreen from "./pages/ServiceScreen";
- 
 
 function App() {
   return (

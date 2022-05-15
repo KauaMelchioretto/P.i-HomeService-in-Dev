@@ -1,33 +1,37 @@
 import React, { useState } from "react";
 import "./ServiceScreen.css";
-import { NavLink, renderMatches } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { Rating } from "primereact/rating";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import useQueryParam from "../hooks/useQueryParam";
 import CardService from "../components/CardService";
+import MenuBar from "../components/MenuBar";
+import * as JSURL from "jsurl";
 
-export default function ServiceScreen() {
+export default function ServiceScreen(props) {
   const [value, setValue] = useState(0);
-  const [professional, setProfessional] = useQueryParam("professional");
+  const [details] = useQueryParam("detailsProfessional");
 
   return (
     <div>
+      <MenuBar></MenuBar>
       <header className="header--container">
         <h1 className="title">Home Service</h1>
-        <h1>Resultados</h1>
+        <h1>Detalhes do serviço</h1>
       </header>
+      <button className="custom--button" onClick={() => window.history.back()}> Voltar</button>
 
       {
         <CardService
-          key={professional.id}
-          id={professional.id}
-          name={professional.name}
-          profession={professional.profession}
-          city={professional.city}
-          city2={professional.city2}
-          numberTel={professional.numberTel}
-          description={professional.description}
+          key={details.id}
+          id={details.id}
+          name={details.name}
+          profession={details.profession}
+          city={details.city}
+          city2={details.city2}
+          numberTel={details.numberTel}
+          description={details.description}
         ></CardService>
       }
 

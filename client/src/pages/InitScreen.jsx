@@ -1,9 +1,8 @@
-import { React, useState } from "react";
-import Search from "../img/search_icon.svg";
-import List from "../img/list_icon.svg";
+import { React, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./InitScreen.css";
 import Axios from "axios";
+import MenuBar from "../components/MenuBar";
 import * as JSURL from "jsurl";
 
 export default function InitScreen() {
@@ -16,8 +15,6 @@ export default function InitScreen() {
       [value.target.name]: value.target.value,
     }));
   };
-
-  console.log(values.information);
 
   const SearchServices = () => {
     Axios.post("http://localhost:3001/resultados", {
@@ -47,9 +44,16 @@ export default function InitScreen() {
     });
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === "NumpadEnter") {
+      SearchServices();
+    }
+  };
+
   {
     return (
       <div className="container">
+        <MenuBar></MenuBar>
         <header className="header--container">
           <h1 className="title">Home Service</h1>
           <input
@@ -57,29 +61,27 @@ export default function InitScreen() {
             data-ls-module="charCounter"
             id="information"
             name="information"
-            type="text"
+            type="textfield"
             placeholder="Pesquise aqui!"
             maxLength={100}
             onChange={handleChangeValues}
+            onKeyDown={handleKeyDown}
           ></input>
 
           <button
             className="search--icon"
             onClick={() => SearchServices()}
           ></button>
-
-          <button className="list--icon" alt="search"></button>
         </header>
 
         <div>
-          <NavLink id="register--button" to="/registros">
+          <NavLink className="custom--button" to="/registros">
             Cadastre seu serviço
           </NavLink>
         </div>
 
         <section className="fast--search">
           <h1>Busca Rápida</h1>
-
           <button
             id="fast-button-search"
             onClick={() => SearchServicesVoid("Encanador")}

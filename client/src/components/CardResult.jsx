@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "../pages/ResultScreen.css";
 import * as JSURL from "jsurl";
 import { useNavigate } from "react-router-dom";
+import useQueryParam from "../hooks/useQueryParam";
+
+
 
 export default function CardResult(props) {
   const navigate = useNavigate();
+  const [professional, setProfessional] = useQueryParam("professional");
+
 
   const seeMore = () => {
     const data = JSURL.stringify(props);
-    navigate(`/servico?professional=${data ?? ""}`);
+    navigate(`/servico?detailsProfessional=${data ?? ""}`);
 }
 
-  console.log(props);
   { 
     return (
       <div className="card--container">

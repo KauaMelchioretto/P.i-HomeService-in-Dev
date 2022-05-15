@@ -17,7 +17,7 @@
   width: 60%;
   position: absolute;
   left: 20%;
-  top: 20%;
+  top: 33%;
   padding: 8px;
   font-size: 15px;
   outline: none;
@@ -25,7 +25,7 @@
 
 .search--icon {
   position: absolute;
-  left: 75%;
+  left: 78%;
   margin-top: 11vh;
   padding: 15px;
   background-image: url(../img/search_icon.svg);
@@ -36,20 +36,7 @@
   background-color: #fff;
 }
 
-.list--icon {
-  position: absolute;
-  left: 78%;
-  margin-top: 11vh;
-  padding: 15px;
-  background-image: url(../img/list_icon.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  border: none;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-#register--button {
+.custom--button {
   color: #fff;
   background-color: black;
   width: 135px;
@@ -63,7 +50,7 @@
   position: relative;
 }
 
-#register--button:hover {
+.custom--button:hover {
   padding: 20px;
 }
 

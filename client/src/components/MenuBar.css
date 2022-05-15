@@ -1,0 +1,31 @@
+#menu--nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 30px;
+    color: #505050;
+    font-size: 20px;
+    font-weight: 70px;
+}
+
+#menu--items{
+    text-decoration: none;
+    color: black;
+}
+
+#menu--items:hover{
+    color:#8a2be2;
+}
+
+

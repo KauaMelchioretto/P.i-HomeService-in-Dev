@@ -2,13 +2,16 @@ import { React } from "react";
 import "./ResultScreen.css";
 import CardResult from "../components/CardResult";
 import useQueryParam from "../hooks/useQueryParam";
+import MenuBar from "../components/MenuBar";
+import CardService from "../components/CardService";
 
 export default function ResultScreen() {
-  const [professional, setProfessional] = useQueryParam("professional");
+  const [professional] = useQueryParam("professional");
   console.log(professional);
   console.log(typeof professional);
   return (
     <div>
+      <MenuBar></MenuBar>
       <header className="header--container">
         <h1 className="title">Home Service</h1>
       </header>
@@ -29,8 +32,7 @@ export default function ResultScreen() {
               city2={value.city}
               numberTel={value.numberTel}
               description={value.description}
-            >
-            </CardResult>
+            ></CardResult>
           ))}
       </div>
     </div>
