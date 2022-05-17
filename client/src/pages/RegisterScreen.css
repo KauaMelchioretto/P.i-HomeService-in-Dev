@@ -41,6 +41,7 @@ form
     color: black;
     position: absolute;
     margin-bottom: 20px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 form div
@@ -80,6 +81,7 @@ form input:focus, form textarea:focus
     color: white;
     margin-left: 20%;
 }
+
 
 
 

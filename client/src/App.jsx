@@ -10,6 +10,7 @@ import ResultScreen from "./pages/ResultScreen";
 import InitScreen from "./pages/InitScreen";
 import RegisterScreen from "./pages/RegisterScreen";
 import ServiceScreen from "./pages/ServiceScreen";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/resultados" exact element={<ResultScreen />} />
             <Route path="/registros" element={<RegisterScreen />} />
             <Route path="/servico" element={<ServiceScreen />} />
+            <Route path="/sobre" element={<About />} />
           </Routes>
         </Router>
       </main>

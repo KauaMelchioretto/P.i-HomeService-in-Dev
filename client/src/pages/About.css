@@ -1,0 +1,12 @@
+.informacoes--sobre{
+    background-color: white;
+    border-radius: 20px;
+    font-family: Arial;
+    color: black;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
+    height: 90vh;
+    width: 70vw;
+    margin-top: 10%;
+    display: flex;
+    margin: 1% auto;
+}

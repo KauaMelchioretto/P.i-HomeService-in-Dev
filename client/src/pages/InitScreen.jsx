@@ -74,11 +74,7 @@ export default function InitScreen() {
           ></button>
         </header>
 
-        <div>
-          <NavLink className="custom--button" to="/registros">
-            Cadastre seu serviço
-          </NavLink>
-        </div>
+        
 
         <section className="fast--search">
           <h1>Busca Rápida</h1>

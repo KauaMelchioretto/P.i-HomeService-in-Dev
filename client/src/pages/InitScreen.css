@@ -36,23 +36,7 @@
   background-color: #fff;
 }
 
-.custom--button {
-  color: #fff;
-  background-color: black;
-  width: 135px;
-  height: 15px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 15px;
-  margin-left: 70%;
-  padding: 15px;
-  transition: all ease 0.3s;
-  position: relative;
-}
 
-.custom--button:hover {
-  padding: 20px;
-}
 
 
 .fast--search {

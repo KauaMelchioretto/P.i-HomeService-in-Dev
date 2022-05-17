@@ -135,7 +135,6 @@ export default function RegisterScreen() {
                 id="city2"
                 name="city2"
                 placeholder="Secundaria (opcional)"
-                required="Text"
                 onChange={ChangeValues}
                 value={values.city2}
               />
@@ -156,7 +155,6 @@ export default function RegisterScreen() {
               <textarea
                 rows="8"
                 name="description"
-                required="text"
                 onChange={ChangeValues}
                 value={values.description}
               />

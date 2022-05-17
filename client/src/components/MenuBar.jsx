@@ -8,6 +8,7 @@ export default function MenuBar () {
             <ul>
                 <li><NavLink to="/inicio" id="menu--items">Home</NavLink></li>
                 <li><NavLink to="/registros" id="menu--items">Cadastre seu serviço</NavLink></li>
+                <li><NavLink to="/sobre" id="menu--items">Sobre</NavLink></li>
             </ul>
         </nav>
     );
