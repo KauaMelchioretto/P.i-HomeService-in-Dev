@@ -42,7 +42,7 @@
 {
     background-color: rgb(255,255,255);
     width: 70vw ;
-    height: 50vw;
+    height: max-content;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
     align-items: center;
     justify-content: center;

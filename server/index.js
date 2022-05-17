@@ -51,14 +51,27 @@ app.post("/resultados", (request,response) => {
     });} else {response.send("")}
 });
 
-app.post("/registrar_avaliacao", (request,response) => {
+app.post("/registrarAvaliacao", (request,response) => {
     const { idService } = request.body;
+    const { username } = request.body;
     const { comment } = request.body;
     const { avaliation } = request.body;
+    if(avaliation != 0){
 
-    let SQL = "INSERT INTO avaliations (idService, comment, avaliation) VALUES (?, ?, ?)"
+    let SQL = "INSERT INTO avaliations (idService, username, comment, avaliation) VALUES (?, ?, ?, ?)"
 
-    dataBase.query(SQL, [idService, comment, avaliation], (err, result) => {
+    dataBase.query(SQL, [idService, username, comment, avaliation], (err, result) => {
+        if (err) console.log(err);
+        else response.send(result);
+    });}else {response.send("")}
+});
+
+app.post("/getAvaliations", (request, response) => {
+    const { idService } = request.body;
+
+    let SQL = "SELECT idavaliation, username, comment, avaliation FROM avaliations WHERE ? = idservice"
+
+    dataBase.query(SQL, [idService], (err, result) => {
         if (err) console.log(err);
         else response.send(result);
     })

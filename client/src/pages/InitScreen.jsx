@@ -21,12 +21,10 @@ export default function InitScreen() {
       information: values.information,
     }).then((response) => {
       const data = JSURL.stringify(response.data);
-      console.log(data);
       if (data == "~'") {
         window.alert("Insira uma informação para pesquisa!");
       } else if (data == "~(~)") {
         window.alert("Sem resultados!");
-        console.log(data);
       } else {
         navigate(`/resultados?professional=${data ?? ""}`);
       }
