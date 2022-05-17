@@ -7,8 +7,6 @@ import CardService from "../components/CardService";
 
 export default function ResultScreen() {
   const [professional] = useQueryParam("professional");
-  console.log(professional);
-  console.log(typeof professional);
   return (
     <div>
       <MenuBar></MenuBar>
@@ -24,8 +22,8 @@ export default function ResultScreen() {
         {Array.isArray(professional) &&
           professional.map((value) => (
             <CardResult
-              key={value.id}
-              id={value.id}
+              key={value.idservice}
+              id={value.idservice}
               name={value.name}
               profession={value.profession}
               city={value.city}

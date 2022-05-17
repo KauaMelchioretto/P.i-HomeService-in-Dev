@@ -19,7 +19,19 @@
     display: flex;
 }
 
-a{
+
+#back--button{
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    width: 75px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 60%;
+}
+
+.wpp--number{
     text-decoration:solid;
     color: black;
 }

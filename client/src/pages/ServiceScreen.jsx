@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ServiceScreen.css";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Axios from "axios";
 import { Rating } from "primereact/rating";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -9,9 +10,46 @@ import CardService from "../components/CardService";
 import MenuBar from "../components/MenuBar";
 import * as JSURL from "jsurl";
 
-export default function ServiceScreen(props) {
+export default function ServiceScreen() {
   const [value, setValue] = useState(0);
+  const [avaliations, setAvaliations] = useState({});
   const [details] = useQueryParam("detailsProfessional");
+
+  const handleChangeAvaliations = (value) => {
+    setAvaliations((prevValue) => ({
+      ...prevValue,
+      [value.target.name]: value.target.value,
+    }));
+  };
+
+  const validation = () => {
+    var message = "";
+    if (value == 0) message = "Informe alguma estrela de nível de avaliação!\n";
+    if (message != "") {
+      window.alert(message);
+      return false;
+    }
+    return true;
+  };
+  
+  const RegisterAvaliation = () => {
+    if (validation(value)) {
+      Axios.post("http://localhost:3001/registrar_avaliacao", {
+        idService: details.id,
+        comment: avaliations.comment,
+        avaliation: value,
+      }).then((response) => {
+        if(response) {
+          setAvaliations({
+            comment: "",
+          });
+          setValue({
+            value: 0,
+          });
+        }
+      });
+    }
+  };
 
   return (
     <div>
@@ -20,7 +58,6 @@ export default function ServiceScreen(props) {
         <h1 className="title">Home Service</h1>
         <h1>Detalhes do serviço</h1>
       </header>
-      <button className="custom--button" onClick={() => window.history.back()}> Voltar</button>
 
       {
         <CardService
@@ -59,13 +96,15 @@ export default function ServiceScreen(props) {
             <div>
               <textarea
                 placeholder="Digite seu comentário"
-                required="Text"
+                name="comment"
                 rows="5"
                 cols="20"
                 wrap="hard"
                 className="TextArea"
+                onChange={handleChangeAvaliations}
               />
             </div>
+            <button onClick={() => RegisterAvaliation()}>Cadastrar Avaliação</button>
           </form>
         </section>
       </div>

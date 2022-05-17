@@ -10,7 +10,6 @@ export default function CardResult(props) {
   const navigate = useNavigate();
   const [professional, setProfessional] = useQueryParam("professional");
 
-
   const seeMore = () => {
     const data = JSURL.stringify(props);
     navigate(`/servico?detailsProfessional=${data ?? ""}`);

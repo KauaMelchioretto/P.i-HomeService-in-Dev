@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
+const { reset } = require("nodemon");
 
 const dataBase = mysql.createPool({
     host: "localhost",
@@ -21,7 +22,7 @@ app.post("/registros", (request, response) => {
     const { numberTel } = request.body;
     const { description } = request.body;
 
-    let SQL = "INSERT INTO services ( name, profession, city, city2, numberTel, description) VALUES (?,?,?,?,?,?)";
+    let SQL = "INSERT INTO services (name, profession, city, city2, numberTel, description) VALUES (?,?,?,?,?,?)";
 
     dataBase.query(SQL, [name, profession, city, city2, numberTel, description], (err, result) => {
         if (err) console.log(err);
@@ -42,13 +43,26 @@ app.post("/resultados", (request,response) => {
     const { information } = request.body;
     if(information != null && information != " " && information != ""){
 
-    SQL = `SELECT idservices , name, profession, city, numberTel, description FROM services WHERE LOCATE (?, name) > 0 OR LOCATE (?, profession) > 0 OR LOCATE (?, city) > 0 OR LOCATE (?, city2) > 0 `;
+    SQL = `SELECT idservice , name, profession, city, numberTel, description FROM services WHERE LOCATE (?, name) > 0 OR LOCATE (?, profession) > 0 OR LOCATE (?, city) > 0 OR LOCATE (?, city2) > 0 `;
 
     dataBase.query(SQL, [information, information, information, information], (err, result) => {
         if (err) console.log(err);
-        else response.send(result)
+        else response.send(result);
     });} else {response.send("")}
 });
+
+app.post("/registrar_avaliacao", (request,response) => {
+    const { idService } = request.body;
+    const { comment } = request.body;
+    const { avaliation } = request.body;
+
+    let SQL = "INSERT INTO avaliations (idService, comment, avaliation) VALUES (?, ?, ?)"
+
+    dataBase.query(SQL, [idService, comment, avaliation], (err, result) => {
+        if (err) console.log(err);
+        else response.send(result);
+    })
+})
 
 app.listen(3001, () => {
     console.log("rodando server");
