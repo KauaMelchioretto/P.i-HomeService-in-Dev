@@ -8,7 +8,6 @@ import "primeicons/primeicons.css";
 import useQueryParam from "../hooks/useQueryParam";
 import CardService from "../components/CardService";
 import MenuBar from "../components/MenuBar";
-import * as JSURL from "jsurl";
 import CardAvaliation from "../components/CardAvaliation";
 
 export default function ServiceScreen() {
@@ -19,7 +18,7 @@ export default function ServiceScreen() {
   const [details] = useQueryParam("detailsProfessional");
   const [listAvaliations, setListAvaliations] = useState();
 
-  const handleChangeAvaliations = (value) => {
+  const changeAvaliations = (value) => {
     setAvaliations((prevValue) => ({
       ...prevValue,
       [value.target.name]: value.target.value,
@@ -67,7 +66,7 @@ export default function ServiceScreen() {
 
   return (
     <div>
-      <MenuBar></MenuBar>
+      <MenuBar/>
       <header className="header--container">
         <h1 className="title">Home Service</h1>
         <h1>Detalhes do serviço</h1>
@@ -112,7 +111,8 @@ export default function ServiceScreen() {
               <input 
               type="text"
               name="username"
-              onChange={handleChangeAvaliations}
+              required = "Text"
+              onChange={changeAvaliations}
               value={avaliations.username}
                />
               <textarea
@@ -122,7 +122,7 @@ export default function ServiceScreen() {
                 cols="20"
                 wrap="hard"
                 className="TextArea"
-                onChange={handleChangeAvaliations}
+                onChange={changeAvaliations}
                 value={avaliations.comment}
               />
             </div>

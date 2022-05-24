@@ -6,7 +6,11 @@ import MenuBar from "../components/MenuBar";
 import CardService from "../components/CardService";
 
 export default function ResultScreen() {
+
   const [professional] = useQueryParam("professional");
+  console.log(typeof(professional));
+  professional.map((value => console.log(value.name)));
+
   return (
     <div>
       <MenuBar></MenuBar>

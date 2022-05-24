@@ -4,10 +4,13 @@ import "./InitScreen.css";
 import Axios from "axios";
 import MenuBar from "../components/MenuBar";
 import * as JSURL from "jsurl";
+import useQueryParam from "../hooks/useQueryParam";
+
 
 export default function InitScreen() {
   const [values, setValues] = useState({});
   const navigate = useNavigate();
+  const [userInformations] = useQueryParam("usuario");
 
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({
@@ -30,7 +33,7 @@ export default function InitScreen() {
       }
     });
   };
-
+  
   const SearchServicesVoid = (param) => {
     Axios.post("http://localhost:3001/resultados", {
       information: param,
@@ -48,6 +51,10 @@ export default function InitScreen() {
     }
   };
 
+  const toRegister = () => {
+    const data = JSURL.stringify(userInformations);
+    navigate(`/registros?usuario=${data ?? ""}`);
+}
   {
     return (
       <div className="container">
@@ -73,9 +80,9 @@ export default function InitScreen() {
         </header>
 
         <div>
-          <NavLink className="custom--button" to="/registros">
+          <button className="custom--button" onClick={() => toRegister()}>
             Cadastre seu serviço
-          </NavLink>
+          </button>
         </div>
 
         <section className="fast--search">

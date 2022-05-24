@@ -10,6 +10,8 @@ import ResultScreen from "./pages/ResultScreen";
 import InitScreen from "./pages/InitScreen";
 import RegisterScreen from "./pages/RegisterScreen";
 import ServiceScreen from "./pages/ServiceScreen";
+import Login from "./pages/Login";
+import UserRegister from "./pages/UserRegister";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path="/resultados" exact element={<ResultScreen />} />
             <Route path="/registros" element={<RegisterScreen />} />
             <Route path="/servico" element={<ServiceScreen />} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/registroUsuario" element={<UserRegister/>} />
           </Routes>
         </Router>
       </main>
