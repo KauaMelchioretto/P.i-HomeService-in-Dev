@@ -22,10 +22,14 @@ nav ul li {
 #menu--items{
     text-decoration: none;
     color: black;
+    border: none;
+    background-color: #fff;
+    font-size: 16px;
 }
 
 #menu--items:hover{
     color:#8a2be2;
+    cursor: pointer;
 }
 
 

@@ -25,7 +25,6 @@ export default function RegisterScreen() {
       [value.target.name]: value.target.value,
     }));
   };
- 
 
   const registerService = () => {
     if (validation(values)) {

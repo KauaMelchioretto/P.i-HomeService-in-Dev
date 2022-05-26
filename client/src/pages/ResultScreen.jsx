@@ -3,14 +3,13 @@ import "./ResultScreen.css";
 import CardResult from "../components/CardResult";
 import useQueryParam from "../hooks/useQueryParam";
 import MenuBar from "../components/MenuBar";
-import CardService from "../components/CardService";
 
 export default function ResultScreen() {
 
   const [professional] = useQueryParam("professional");
-  console.log(typeof(professional));
-  professional.map((value => console.log(value.name)));
+  const [user] = useQueryParam("usuario");
 
+  console.log(professional);
   return (
     <div>
       <MenuBar></MenuBar>

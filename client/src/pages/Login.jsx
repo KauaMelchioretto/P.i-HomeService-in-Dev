@@ -65,7 +65,7 @@ export default function Login() {
           <NavLink to="/registroUsuario">Registrar-se</NavLink>
         </form>
         <div className="buttons">
-          <button onClick={() => login()}>kkkkkkkkkkkkkkkkkk</button>
+          <button onClick={() => login()}>Login</button>
         </div>
       </section>
     </div>
