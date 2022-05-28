@@ -1,5 +1,5 @@
-import { React, useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./InitScreen.css";
 import Axios from "axios";
 import MenuBar from "../components/MenuBar";

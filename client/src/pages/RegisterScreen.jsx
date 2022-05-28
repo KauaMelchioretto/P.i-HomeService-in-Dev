@@ -88,10 +88,11 @@ export default function RegisterScreen() {
   return (
     <div>
       <MenuBar/>
-      <div className="Registro">
+      <header className="header--container">
         <h1 className="title">Home Service</h1>
-      </div>
-      <section className="register--section">
+        <h2>Cadastre seus serviços aqui!</h2>
+      </header>
+      <section className="custom--section">
         <form>
           <div className="box-register">
             <label>Nome</label>
@@ -102,6 +103,7 @@ export default function RegisterScreen() {
               required="Text"
               onChange={changeValues}
               value={values.name}
+              className="input--field"
             />
           </div>
           <div className="box-register">
@@ -113,6 +115,7 @@ export default function RegisterScreen() {
               required="Text"
               onChange={changeValues}
               value={values.profession}
+              className="input--field"
             />
           </div>
           <div className="box-register">
@@ -124,6 +127,7 @@ export default function RegisterScreen() {
               required="Text"
               onChange={changeValues}
               value={values.city}
+              className="input--field"
             />
           </div>
           <div className="box-register">
@@ -135,6 +139,7 @@ export default function RegisterScreen() {
               required="Text"
               onChange={changeValues}
               value={values.city2}
+              className="input--field"
             />
           </div>
           <div className="box-register">
@@ -146,6 +151,7 @@ export default function RegisterScreen() {
               required="Text"
               onChange={changeValues}
               value={values.numberTel}
+              className="input--field"
             />
           </div>
           <div className="box-register">
@@ -156,12 +162,13 @@ export default function RegisterScreen() {
               required="text"
               onChange={changeValues}
               value={values.description}
+              className="input--field"
             />
           </div>
-        </form>
-        
+            
         <div className="buttons">
             <button
+              type="button"
               className="action--buttons"
               onClick={() => registerService()}
             >
@@ -175,7 +182,13 @@ export default function RegisterScreen() {
               Descartar
             </button>
           </div>
+        </form>
       </section>
+
+      <div className="services--title">
+          <h1>Seus serviços cadastrados</h1>
+      </div>
+
       <div className="Card">
         {typeof listServices !== "undefined" &&
           listServices.map((values) => {

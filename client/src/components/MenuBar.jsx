@@ -9,32 +9,36 @@ export default function MenuBar() {
   const navigate = useNavigate();
 
   const toPage = (param) => {
-    if (param == "inicio" && userInformations != null) {
+    if(userIsLoged()){
       const data = JSURL.stringify(userInformations);
-      navigate(`/${param}?usuario=${data ?? ""}`);
-    } else if (param == "inicio") {
-      navigate(`/inicio`);
-
-    } else if (param == "registros" && userInformations != null) {
-      const data = JSURL.stringify(userInformations);
-      navigate(`/${param}?usuario=${data ?? ""}`);
-    } else if (param == "registros") {
-    window.alert("É necessário fazer login para acessar a seção de Registros!!");
-    }
-
-     else if (param == "login" && userInformations != null) {
-      const data = JSURL.stringify(userInformations);
-      navigate(`/${param}?usuario=${data ?? ""}`);
-    } else if (param == "login") {
-      navigate(`/login`);
-
-    } else if (param == "sair" && userInformations != null) {
+      if(param == "inicio"){
+        navigate(`/${param}?usuario=${data ?? ""}`);
+      } else if (param == "registros") {
+        navigate(`/${param}?usuario=${data ?? ""}`);
+      } else if (param == "login") {
+        navigate(`/${param}?usuario=${data ?? ""}`);
+      } else if (param == "sair") {
         window.alert("Desconectado com sucesso!");
         navigate(`/inicio`);
-    } else if (param == "sair") {
-        window.alert("Você não está conectado à sua conta!");
-    } 
+      } else if (param == "login") {
+        navigate(`/${param}?usuario=${data ?? ""}`);
+      }
+      
+    } else if (param == "inicio"){
+      navigate(`/${param}`);
+    } else if (param == "login") {
+      navigate(`/${param}`);
+    } else {
+      window.alert("É necessário estar conectado para acessar esta atividade!")
+    }
   };
+
+  const userIsLoged = () => {
+    if (userInformations != null) 
+      return true;
+      else
+    return false;
+  }
 
   return (
     <nav id="menu--nav">

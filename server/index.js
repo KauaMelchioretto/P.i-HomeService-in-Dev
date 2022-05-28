@@ -3,7 +3,6 @@ const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
 const { reset } = require("nodemon");
-const { request } = require("express");
 
 const dataBase = mysql.createPool({
   host: "localhost",

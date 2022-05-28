@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MenuBar from "../components/MenuBar";
 import Axios from "axios";
+import "./Forms.css"
 import * as JSURL from "jsurl";
 
 export default function UserRegister() {
@@ -21,9 +22,7 @@ export default function UserRegister() {
         const data = JSURL.stringify(response.data);
         if (data != "~(~)") {
           window.alert("Email já cadastrado!");
-        } 
-        
-        else {
+        } else {
           if (validation(values)) {
             Axios.post("http://localhost:3001/registroUsuario", {
               userName: values.userName,
@@ -37,7 +36,8 @@ export default function UserRegister() {
                   passwordRegister: "",
                   passwordConfirmation: "",
                 });
-              } window.alert("Cadastrado com sucesso!")
+              }
+              window.alert("Cadastrado com sucesso!");
             });
           }
         }
@@ -69,7 +69,11 @@ export default function UserRegister() {
   return (
     <div>
       <MenuBar />
-      <section className="register--section">
+      <header className="header--container">
+        <h1>Home Service</h1>
+        <h2>Registre sua conta aqui!</h2>
+      </header>
+      <section className="userForm--section">
         <form>
           <div>
             <label>Nome</label>
@@ -81,6 +85,7 @@ export default function UserRegister() {
               required="Text"
               onChange={changeValues}
               value={values.userName}
+              className="input--field"
             />
           </div>
           <div>
@@ -93,6 +98,7 @@ export default function UserRegister() {
               required="Text"
               onChange={changeValues}
               value={values.emailRegister}
+              className="input--field"
             />
           </div>
           <div>
@@ -104,6 +110,7 @@ export default function UserRegister() {
               placeholder="Digite sua senha para cadastro"
               onChange={changeValues}
               value={values.passwordRegister}
+              className="input--field"
             />
           </div>
           <div>
@@ -115,10 +122,11 @@ export default function UserRegister() {
               placeholder="Cofirmação de senha"
               onChange={changeValues}
               value={values.passwordConfirmation}
+              className="input--field"
             />
           </div>
         </form>
-                  
+
         <div className="buttons">
           <button onClick={() => registerUser()}>Cadastrar-se</button>
           <button type="reset">Descartar</button>

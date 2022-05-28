@@ -4,8 +4,6 @@ import * as JSURL from "jsurl";
 import { useNavigate } from "react-router-dom";
 import useQueryParam from "../hooks/useQueryParam";
 
-
-
 export default function CardResult(props) {
   const navigate = useNavigate();
   const seeMore = () => {

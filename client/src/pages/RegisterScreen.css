@@ -4,24 +4,21 @@
     text-align: center;
 }
 
-.Card
-{
-    margin-top: 10%;
-}
-
 .title
 {
     font-size: 40px;
     padding: 10px 20px;
 }
 
-.register--section
+.custom--section
 {
+    bottom: -8rem;
+    margin-top: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80vh;
-    margin-top: 10%;
+    position: relative;
 }
 
 .buttons
@@ -41,6 +38,7 @@ form
     color: black;
     position: absolute;
     margin-bottom: 20px;
+    width: 50%;
 }
 
 form div
@@ -81,5 +79,11 @@ form input:focus, form textarea:focus
     margin-left: 20%;
 }
 
+.services--title {
+    text-align: center;
+    margin-top: 60vh;
+}
 
-
+.Card {
+    margin-top: 10%;
+}
