@@ -5,11 +5,14 @@ import Axios from "axios";
 import "./Forms.css";
 import * as JSURL from "jsurl";
 import useQueryParam from "../hooks/useQueryParam";
+import { useDispatch, useSelector } from "react-redux";
+import { allActions } from "../redux/actions";
 
 export default function Login() {
   const [values, setValues] = useState({});
   const [userInformations] = useQueryParam("usuario");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const changeValues = (value) => {
     setValues((prevValue) => ({
@@ -30,10 +33,12 @@ export default function Login() {
         email: values.email,
         password: values.password,
       }).then((response) => {
-        const data = JSURL.stringify(response.data);
-        data != "~(~)"
-          ? navigate(`/inicio?usuario=${data ?? ""}`)
-          : window.alert("E-mail ou senha não correspondem!");
+        const { token } = response.data;
+        dispatch(allActions.doSetLogin(token));
+        console.log(token);
+        token != undefined
+        ? navigate(`/inicio`)
+        : window.alert("E-mail ou senha não correspondem!");
       });
   };
 

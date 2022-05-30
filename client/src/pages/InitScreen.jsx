@@ -9,7 +9,6 @@ import useQueryParam from "../hooks/useQueryParam";
 export default function InitScreen() {
   const [values, setValues] = useState({});
   const navigate = useNavigate();
-  const [userInformations] = useQueryParam("usuario");
 
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({
@@ -22,14 +21,13 @@ export default function InitScreen() {
     Axios.post("http://localhost:3001/resultados", {
       information: values.information,
     }).then((response) => {
-      const user = JSURL.stringify(userInformations);
       const data = JSURL.stringify(response.data);
       if (data == "~'") {
         window.alert("Insira uma informação para pesquisa!");
       } else if (data == "~(~)") {
         window.alert("Sem resultados!");
       } else {
-        navigate(`/resultados?professional=${data ?? ""}` + `?usuario=${user ?? ""}`);
+        navigate(`/resultados?professional=${data ?? ""}`);
       }
     });
   };
@@ -52,17 +50,16 @@ export default function InitScreen() {
   };
 
   const toRegister = () => {
-    if (userInformations != null) {
-      const data = JSURL.stringify(userInformations);
-      navigate(`/registros?usuario=${data ?? ""}`);
-    } else
+   
     window.alert("É necessário fazer login para acessar a seção de Cadastro de Serviço!!");
   };
 
   {
     return (
       <div className="container">
-        <MenuBar></MenuBar>
+        <MenuBar
+        >
+        </MenuBar>
         <header className="header--container">
           <h1 className="title">Home Service</h1>
           <input

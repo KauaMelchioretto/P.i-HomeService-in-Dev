@@ -7,9 +7,7 @@ import MenuBar from "../components/MenuBar";
 export default function ResultScreen() {
 
   const [professional] = useQueryParam("professional");
-  const [user] = useQueryParam("usuario");
 
-  console.log(professional);
   return (
     <div>
       <MenuBar></MenuBar>

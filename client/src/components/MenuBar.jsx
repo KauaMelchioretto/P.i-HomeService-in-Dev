@@ -8,7 +8,7 @@ export default function MenuBar() {
   const [userInformations] = useQueryParam("usuario");
   const navigate = useNavigate();
 
-  const toPage = (param) => {
+  const toPage = (param, accessToken) => {
     if(userIsLoged()){
       const data = JSURL.stringify(userInformations);
       if(param == "inicio"){

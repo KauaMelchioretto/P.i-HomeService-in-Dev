@@ -3,6 +3,8 @@ const app = express();
 const mysql = require("mysql2");
 const cors = require("cors");
 const { reset } = require("nodemon");
+const jwt = require("jsonwebtoken");
+const SECRET = "password";
 
 const dataBase = mysql.createPool({
   host: "localhost",
@@ -14,7 +16,25 @@ const dataBase = mysql.createPool({
 app.use(cors());
 app.use(express.json());
 
-app.post("/registros", (request, response) => {
+function verifyJWT(request, response, next) {
+  const token = request.headers["x-access-token"];
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) return response.status(401).end();
+    request.iduser = decoded.iduser;
+    next();
+  });
+}
+
+// falta terminar
+app.get("/verifyAccess", (request, response) => {
+  const token = request.headers["x-access-token"];
+  jwt.verify(token, SECRET, (err, decoded) => {
+    if (err) return "";
+    else request.iduser = decoded.iduser;
+  });
+});
+
+app.post("/registros", (request, verifyJMT, response) => {
   const { iduser } = request.body;
   const { name } = request.body;
   const { profession } = request.body;
@@ -23,8 +43,7 @@ app.post("/registros", (request, response) => {
   const { numberTel } = request.body;
   const { description } = request.body;
 
-  let SQL =
-    `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
+  let SQL = `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
 
   dataBase.query(
     SQL,
@@ -41,7 +60,7 @@ app.post("/getCards", (request, response) => {
 
   let SQL = "SELECT * FROM services WHERE ? = iduser";
 
-  dataBase.query(SQL,[iduser], (err, result) => {
+  dataBase.query(SQL, [iduser], (err, result) => {
     if (err) console.log(err);
     else response.send(result);
   });
@@ -112,22 +131,28 @@ app.post("/registroUsuario", (request, response) => {
   const { emailRegister } = request.body;
   const { passwordRegister } = request.body;
 
-    let SQL = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-    dataBase.query(SQL,[userName, emailRegister, passwordRegister], (err, result) => {
-        if (err) console.log(err);
-        else response.send(result);
-      }
-    );
+  let SQL = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+  dataBase.query(
+    SQL,
+    [userName, emailRegister, passwordRegister],
+    (err, result) => {
+      if (err) console.log(err);
+      else response.send(result);
+    }
+  );
 });
 
+//AJUSTAR A GERAÇÃO DE TOKEN CONFIRMANDO O RESULT
 app.post("/login", (request, response) => {
   const { email } = request.body;
   const { password } = request.body;
+  var token = {};
 
-  let SQL = "SELECT * FROM users WHERE ? = email AND ? = password";
+  let SQL = "SELECT iduser FROM users WHERE ? = email AND ? = password";
   dataBase.query(SQL, [email, password], (err, result) => {
     if (err) console.log(err);
-    else response.send(result);
+    else if(result === {}) token = jwt.sign({ result }, SECRET, { expiresIn: "1h" });
+    return response.send({ auth: true, token });
   });
 });
 
