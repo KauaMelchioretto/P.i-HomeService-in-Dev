@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import MenuBar from "../components/MenuBar";
+import MenuBar from "./MenuBar";
 import { NavLink, useNavigate } from "react-router-dom";
-import Axios from "axios";
-import "./Forms.css";
-import * as JSURL from "jsurl";
-import useQueryParam from "../hooks/useQueryParam";
-import { useDispatch, useSelector } from "react-redux";
-import { allActions } from "../redux/actions";
+import { login } from "../services/login"
+import "../pages/Forms.css";
+import { useSelector } from "react-redux";
 
-export default function Login() {
+export default function Singin({ callback }) {
   const [values, setValues] = useState({});
-  const [userInformations] = useQueryParam("usuario");
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const token = useSelector(({login: token}) => token);
+
+
+  const handleClick = async () => {
+    const email = values.email;
+    const password = values.password;
+    await login(email, password);
+    callback(token);
+  }
 
   const changeValues = (value) => {
     setValues((prevValue) => ({
@@ -21,30 +24,9 @@ export default function Login() {
     }));
   };
 
-  const userIsLoged = () => {
-    if (userInformations != null) return true;
-    else return false;
-  };
-
-  const login = () => {
-    if (userIsLoged()) window.alert("Você já está conectado à sua conta!");
-    else
-      Axios.post("http://localhost:3001/login", {
-        email: values.email,
-        password: values.password,
-      }).then((response) => {
-        const { token } = response.data;
-        dispatch(allActions.doSetLogin(token));
-        console.log(token);
-        token != undefined
-        ? navigate(`/inicio`)
-        : window.alert("E-mail ou senha não correspondem!");
-      });
-  };
-
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === "NumpadEnter") {
-      login();
+      handleClick();
     }
   };
 
@@ -87,7 +69,7 @@ export default function Login() {
             <button
               className="custom--button"
               type="button"
-              onClick={() => login()}
+              onClick={() => handleClick()}
             >
               Login
             </button>

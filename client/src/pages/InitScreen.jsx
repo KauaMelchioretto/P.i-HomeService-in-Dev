@@ -1,10 +1,10 @@
 import { React, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import "./InitScreen.css";
 import Axios from "axios";
 import MenuBar from "../components/MenuBar";
 import * as JSURL from "jsurl";
-import useQueryParam from "../hooks/useQueryParam";
+import { allActions } from "../redux/actions";
 
 export default function InitScreen() {
   const [values, setValues] = useState({});
@@ -49,17 +49,10 @@ export default function InitScreen() {
     }
   };
 
-  const toRegister = () => {
-   
-    window.alert("É necessário fazer login para acessar a seção de Cadastro de Serviço!!");
-  };
-
   {
     return (
       <div className="container">
-        <MenuBar
-        >
-        </MenuBar>
+        <MenuBar></MenuBar>
         <header className="header--container">
           <h1 className="title">Home Service</h1>
           <input

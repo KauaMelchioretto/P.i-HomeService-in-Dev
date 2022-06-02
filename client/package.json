@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "typescript": "^4.5.2",
     "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -43,5 +44,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    }, "devDependencies": {
+      "@types/react": "^17.0.35"
   }
 }

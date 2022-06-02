@@ -31,6 +31,7 @@ app.get("/verifyAccess", (request, response) => {
   jwt.verify(token, SECRET, (err, decoded) => {
     if (err) return "";
     else request.iduser = decoded.iduser;
+    next();
   });
 });
 
@@ -146,15 +147,18 @@ app.post("/registroUsuario", (request, response) => {
 app.post("/login", (request, response) => {
   const { email } = request.body;
   const { password } = request.body;
-  var token = {};
 
   let SQL = "SELECT iduser FROM users WHERE ? = email AND ? = password";
   dataBase.query(SQL, [email, password], (err, result) => {
     if (err) console.log(err);
-    else if(result === {}) token = jwt.sign({ result }, SECRET, { expiresIn: "1h" });
-    return response.send({ auth: true, token });
+    else token = jwt.sign({ result }, SECRET, { expiresIn: "1h" });
+    if(result.length !== 0) response.send({ auth: true, token, result });
+    else response.send("");
   });
 });
+
+
+
 
 app.listen(3001, () => {
   console.log("rodando server");
