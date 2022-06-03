@@ -6,12 +6,12 @@ import {
   Route,
   BrowserRouter as Router,
 } from "react-router-dom";
-import ResultScreen from "./pages/ResultScreen";
-import InitScreen from "./pages/InitScreen";
+import ResultScreen from "./pages/ResultPage";
+import InitScreen from "./pages/InitPage";
 import RegisterScreen from "./pages/RegisterScreen";
-import ServiceScreen from "./pages/ServiceScreen";
+import ServiceScreen from "./pages/ServicePage";
 import LoginPage from "./pages/LoginPage";
-import UserRegister from "./pages/UserRegister";
+import UserRegister from "./components/Registers/UserRegister";
 import { AuthProvider } from "./containers/PrivateContainer";
 import RequireAuth from "./containers/RequireAuth";
 
@@ -26,7 +26,7 @@ function App() {
               <Route path="/inicio" element={<InitScreen />} />
               <Route path="/resultados" exact element={<ResultScreen />} />
               <Route
-                path="/registros"
+                path="/registrosDeServicos"
                 element={
                   <RequireAuth>
                     <RegisterScreen />

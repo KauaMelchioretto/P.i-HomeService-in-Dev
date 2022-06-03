@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import MenuBar from "./MenuBar";
+import MenuBar from "../MenuBar/MenuBar";
 import { NavLink, useNavigate } from "react-router-dom";
-import { login } from "../services/login"
-import "../pages/Forms.css";
+import { login } from "../../services/login"
+import "../Registers/Forms.css";
 import { useSelector } from "react-redux";
 
 export default function Singin({ callback }) {
   const [values, setValues] = useState({});
-  const token = useSelector(({login: token}) => token);
-
 
   const handleClick = async () => {
     const email = values.email;
     const password = values.password;
-    await login(email, password);
+    const token = await login(email, password);
     callback(token);
   }
 

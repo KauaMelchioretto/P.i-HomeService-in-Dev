@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "../pages/ResultScreen.css";
+import "../Result/ResultScreen.css";
 import * as JSURL from "jsurl";
 import { useNavigate } from "react-router-dom";
-import useQueryParam from "../hooks/useQueryParam";
 
 export default function CardResult(props) {
   const navigate = useNavigate();

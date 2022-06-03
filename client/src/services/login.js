@@ -13,12 +13,12 @@ export async function login(email, password) {
     email,
     password,
   });
-  store.dispatch(allActions.doSetLogin({token}));
+  return token;
 }
 
 export async function logout({ token }) {
   try {
-    await httpAgent.get(`/logout?token${token}`);
+    store.dispatch(allActions.doResetLogin({token}))
   } catch (error) {
     console.log("[Error] - logout", error);
     return false;

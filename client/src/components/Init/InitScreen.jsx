@@ -2,13 +2,14 @@ import { React, useState } from "react";
 import { useNavigate } from "react-router";
 import "./InitScreen.css";
 import Axios from "axios";
-import MenuBar from "../components/MenuBar";
+import MenuBar from "../MenuBar/MenuBar";
 import * as JSURL from "jsurl";
-import { allActions } from "../redux/actions";
+import { useSelector } from "react-redux";
 
 export default function InitScreen() {
   const [values, setValues] = useState({});
   const navigate = useNavigate();
+  const token = useSelector(({rootReducer: {login : {token}}}) => token);
 
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({

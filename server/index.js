@@ -17,26 +17,18 @@ app.use(cors());
 app.use(express.json());
 
 function verifyJWT(request, response, next) {
-  const token = request.headers["x-access-token"];
-  jwt.verify(token, SECRET, (err, decoded) => {
-    if (err) return response.status(401).end();
-    request.iduser = decoded.iduser;
-    next();
-  });
-}
+  const token = jwt.decode(request);
+  console.log()
+  // const token = request.headers;
+  // jwt.verify(token, SECRET, (err, decoded) => {
+  //   if (err) return response.status(401).end();
+  //   return decoded.userToken;
+  };
 
-// falta terminar
-app.get("/verifyAccess", (request, response) => {
-  const token = request.headers["x-access-token"];
-  jwt.verify(token, SECRET, (err, decoded) => {
-    if (err) return "";
-    else request.iduser = decoded.iduser;
-    next();
-  });
-});
 
-app.post("/registros", (request, verifyJMT, response) => {
-  const { iduser } = request.body;
+app.post("/registrosDeServicos", (request, response) => {
+  const { userToken } = request.body;
+  const re = verifyJWT(userToken);
   const { name } = request.body;
   const { profession } = request.body;
   const { city } = request.body;
@@ -44,16 +36,16 @@ app.post("/registros", (request, verifyJMT, response) => {
   const { numberTel } = request.body;
   const { description } = request.body;
 
-  let SQL = `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
+  // let SQL = `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
 
-  dataBase.query(
-    SQL,
-    [iduser, name, profession, city, city2, numberTel, description],
-    (err, result) => {
-      if (err) console.log(err);
-      else response.send(result);
-    }
-  );
+  // dataBase.query(
+  //   SQL,
+  //   [iduser, name, profession, city, city2, numberTel, description],
+  //   (err, result) => {
+  //     if (err) console.log(err);
+  //     else response.send(result);
+  //   }
+  // );
 });
 
 app.post("/getCards", (request, response) => {

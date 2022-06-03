@@ -1,6 +1,5 @@
 import React from "react";
-import UserImage from "../img/eu.jpg";
-import WppIcon from "../img/WppIcon.webp";
+import WppIcon from "../../img/WppIcon.webp";
 import { NavLink } from "react-router-dom";
 
 export default function CardService(props) {

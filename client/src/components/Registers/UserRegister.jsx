@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import MenuBar from "../components/MenuBar";
+import MenuBar from "../MenuBar/MenuBar";
 import Axios from "axios";
-import "./Forms.css"
+import "./Forms.css";
 import * as JSURL from "jsurl";
 
 export default function UserRegister() {
@@ -125,12 +125,13 @@ export default function UserRegister() {
               className="input--field"
             />
           </div>
-        </form>
 
-        <div className="buttons">
-          <button onClick={() => registerUser()}>Cadastrar-se</button>
-          <button type="reset">Descartar</button>
-        </div>
+          <div className="buttons">
+            <button className="register--button" onClick={() => registerUser()}>Cadastrar-se</button>
+            <button className="register--button" type="reset">Descartar</button>
+          </div>
+
+        </form>
       </section>
     </div>
   );

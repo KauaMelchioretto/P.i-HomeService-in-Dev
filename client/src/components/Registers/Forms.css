@@ -1,0 +1,19 @@
+.userForm--section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  position: relative;
+}
+
+.register--button {
+  color: #fff;
+  background-color: black;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  transition: all ease 0.3s;
+  position: relative;
+  margin-left: 2%;
+}
