@@ -3,7 +3,7 @@ import MenuBar from "../MenuBar/MenuBar";
 import Axios from "axios";
 import "./Forms.css";
 import * as JSURL from "jsurl";
-
+import { registerUser, verifyUserEmail } from "../../services/Registers/Registers";
 export default function UserRegister() {
   const [values, setValues] = useState({});
 
@@ -14,49 +14,74 @@ export default function UserRegister() {
     }));
   };
 
-  const registerUser = () => {
-    if (validation(values)) {
-      Axios.post("http://localhost:3001/getEmailUsuario", {
-        emailRegister: values.emailRegister,
-      }).then((response) => {
-        const data = JSURL.stringify(response.data);
-        if (data != "~(~)") {
-          window.alert("Email já cadastrado!");
-        } else {
-          if (validation(values)) {
-            Axios.post("http://localhost:3001/registroUsuario", {
-              userName: values.userName,
-              emailRegister: values.emailRegister,
-              passwordRegister: values.passwordRegister,
-            }).then((response) => {
-              if (response) {
-                setValues({
-                  userName: "",
-                  emailRegister: "",
-                  passwordRegister: "",
-                  passwordConfirmation: "",
-                });
-              }
-              window.alert("Cadastrado com sucesso!");
-            });
-          }
-        }
-      });
+  const handleClickRegisterUser = async () => {
+    if(validation(values)){
+    const userName = values.userName;
+    const email = values.email;
+    const password = values.password;
+    const verify = await verifyUserEmail(email);
+    verify == true ? window.alert("Email já cadastrado!") : await registerUser(userName, email, password); 
+    clearInputs();
+    }
+  }
+
+ const clearInputs = () => {
+    setValues({
+      userName: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+    });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === "NumpadEnter") {
+      handleClickRegisterUser();
     }
   };
+  // const registerUser = () => {
+  //   if (validation(values)) {
+  //     Axios.post("http://localhost:3001/getEmailUsuario", {
+  //       emailRegister: values.emailRegister,
+  //     }).then((response) => {
+  //       const data = JSURL.stringify(response.data);
+  //       if (data != "~(~)") {
+  //         window.alert("Email já cadastrado!");
+  //       } else {
+  //         if (validation(values)) {
+  //           Axios.post("http://localhost:3001/registroUsuario", {
+  //             userName: values.userName,
+  //             emailRegister: values.emailRegister,
+  //             passwordRegister: values.passwordRegister,
+  //           }).then((response) => {
+  //             if (response) {
+  //               setValues({
+  //                 userName: "",
+  //                 emailRegister: "",
+  //                 passwordRegister: "",
+  //                 passwordConfirmation: "",
+  //               });
+  //             }
+  //             window.alert("Cadastrado com sucesso!");
+  //           });
+  //         }
+  //       }
+  //     });
+  //   }
+  // };
 
   const validation = () => {
     var message = "";
     if (values.userName == "") {
       message += "Insira um nome de usuário!\n";
     }
-    if (values.emailRegister == "") {
+    if (values.email == "") {
       message += "Insira um e-mail para cadastro!\n";
     }
-    if (values.passwordRegister == "") {
+    if (values.password == "") {
       message += "Insira uma senha para cadastro!\n";
     }
-    if (values.passwordConfirmation != values.passwordRegister) {
+    if (values.passwordConfirmation != values.password) {
       message += "As senhas não correspondem!\n";
     }
     if (message != "") {
@@ -86,31 +111,34 @@ export default function UserRegister() {
               onChange={changeValues}
               value={values.userName}
               className="input--field"
+              onKeyDown={handleKeyDown}
             />
           </div>
           <div>
             <label>Email</label>
             <input
               type="text"
-              id="emailRegister"
-              name="emailRegister"
+              id="email"
+              name="email"
               placeholder="Digite seu e-mail para cadastro"
               required="Text"
               onChange={changeValues}
-              value={values.emailRegister}
+              value={values.email}
               className="input--field"
+              onKeyDown={handleKeyDown}
             />
           </div>
           <div>
             <label>Senha</label>
             <input
               type="password"
-              id="passwordRegister"
-              name="passwordRegister"
+              id="password"
+              name="password"
               placeholder="Digite sua senha para cadastro"
               onChange={changeValues}
-              value={values.passwordRegister}
+              value={values.password}
               className="input--field"
+              onKeyDown={handleKeyDown}
             />
           </div>
           <div>
@@ -123,12 +151,13 @@ export default function UserRegister() {
               onChange={changeValues}
               value={values.passwordConfirmation}
               className="input--field"
+              onKeyDown={handleKeyDown}
             />
           </div>
 
           <div className="buttons">
-            <button className="register--button" onClick={() => registerUser()}>Cadastrar-se</button>
-            <button className="register--button" type="reset">Descartar</button>
+            <button className="register--button" type="button" onClick={() => handleClickRegisterUser()}>Cadastrar-se</button>
+            <button className="register--button" type="reset" onClick={() => clearInputs()}>Descartar</button>
           </div>
 
         </form>

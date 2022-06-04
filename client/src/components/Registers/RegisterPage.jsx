@@ -34,6 +34,7 @@ export default function RegisterScreen() {
       const city2 = values.city2;
       const numberTel = values.numberTel;
       const description = values.description;
+
       await registerService(
         userToken,
         name,
@@ -43,6 +44,8 @@ export default function RegisterScreen() {
         numberTel,
         description
       );
+     clearInputs();
+     window.alert("Serviço cadastrado com sucesso!");
     }
   };
 
@@ -79,13 +82,13 @@ export default function RegisterScreen() {
     });
   };
     
-  // useEffect(() => {
-  //   Axios.post("http://localhost:3001/getCards", {
-  //     iduser: parseInt(userInformations.map((value) => value.iduser)),
-  //   }).then((response) => {
-  //     setListServices(response.data);
-  //   });
-  // }, [listServices]);
+  useEffect(() => {
+    Axios.post("http://localhost:3001/getCards", {
+      userToken: token,
+    }).then((response) => {
+      setListServices(response.data);
+    });
+  }, [listServices]);
 
   return (
     <div>

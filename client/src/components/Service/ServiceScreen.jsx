@@ -9,15 +9,15 @@ import useQueryParam from "../../hooks/useQueryParam";
 import CardService from "../../components/Cards/CardService";
 import MenuBar from "../../components/MenuBar/MenuBar";
 import CardAvaliation from "../../components/Cards/CardAvaliation";
-import { registerAvaliation } from "../../services/Registers/Registers";
+import { getUserName, registerAvaliation } from "../../services/Registers/Registers";
+import { useSelector } from "react-redux";
 
 export default function ServiceScreen() {
   const [value, setValue] = useState(0);
-  const [avaliations, setAvaliations] = useState({
-
-  });
+  const [avaliations, setAvaliations] = useState({});
   const [details] = useQueryParam("detailsProfessional");
   const [listAvaliations, setListAvaliations] = useState();
+  const token = useSelector(({rootReducer: {login : {token}}}) => token);
 
   const changeAvaliations = (value) => {
     setAvaliations((prevValue) => ({
@@ -38,28 +38,32 @@ export default function ServiceScreen() {
 
   const handleClickAvaliation = async () => {
     if(validation(value)){
+    const userToken = token;
     const idService = details.id;
-    const username = avaliations.username;
     const comment = avaliations.comment;
-    const avaliation = value
-    await registerAvaliation(idService, username, comment, avaliation);
-      setAvaliations({
-        comment: "",
-        username: "",
-      }); setValue({
-        value: 1,
-        stars: 5,
-      });
+    const avaliation = value;
+    const userName = await getUserName(userToken);
+    // userName != undefined ? await registerAvaliation(idService, userName, comment, avaliation) : window.alert("Faça login para registrar uma avaliação!");
+    // clearAvaliations();
     }
   }
 
-  useEffect(() => {
-    Axios.post("http://localhost:3001/getAvaliations", {
-      idService: details.id,
-    }).then((response) => {
-      setListAvaliations(response.data);
+  const clearAvaliations = () => {
+    setAvaliations({
+      comment: ""
+    }); setValue({
+      value: 1,
+      stars: 5,
     });
-  }, [listAvaliations]);
+  }
+
+  // useEffect(() => {
+  //   Axios.post("http://localhost:3001/getAvaliations", {
+  //     idService: details.id,
+  //   }).then((response) => {
+  //     setListAvaliations(response.data);
+  //   });
+  // }, [listAvaliations]);
 
   return (
     <div>
@@ -104,21 +108,13 @@ export default function ServiceScreen() {
 
           <div>
             <div className="box-register">
-              <label>Insira Seu Nome!</label>
-              <input 
-              type="text"
-              name="username"
-              required = "Text"
-              onChange={changeAvaliations}
-              value={avaliations.username}
-               />
               <textarea
                 placeholder="Digite seu comentário"
                 name="comment"
                 rows="5"
                 cols="20"
                 wrap="hard"
-                className="TextArea"
+                className="input--field"
                 onChange={changeAvaliations}
                 value={avaliations.comment}
               />

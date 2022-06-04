@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 export default function Singin({ callback }) {
   const [values, setValues] = useState({});
 
-  const handleClick = async () => {
+  const handleClickLogin = async () => {
     const email = values.email;
     const password = values.password;
     const token = await login(email, password);
@@ -24,7 +24,7 @@ export default function Singin({ callback }) {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === "NumpadEnter") {
-      handleClick();
+      handleClickLogin();
     }
   };
 
@@ -67,7 +67,7 @@ export default function Singin({ callback }) {
             <button
               className="custom--button"
               type="button"
-              onClick={() => handleClick()}
+              onClick={() => handleClickLogin()}
             >
               Login
             </button>

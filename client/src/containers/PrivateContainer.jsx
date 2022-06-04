@@ -10,13 +10,16 @@ function AuthProvider({ children }) {
 
     let login = (token, callback) => {
             setUser(token);
+            if(token != undefined){
             dispatch(allActions.doSetLogin({token}));
             callback();
+            } else window.alert("E-mail ou senha não correspondem!")
     };
 
     let logout = (callback) => {
             setUser(null);
             dispatch(allActions.doResetLogin());
+            window.alert("Deslogado com sucesso!");
             callback();
     };
 

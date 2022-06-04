@@ -4,6 +4,7 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const { reset } = require("nodemon");
 const jwt = require("jsonwebtoken");
+const { request } = require("express");
 const SECRET = "password";
 
 const dataBase = mysql.createPool({
@@ -16,19 +17,19 @@ const dataBase = mysql.createPool({
 app.use(cors());
 app.use(express.json());
 
-function verifyJWT(request, response, next) {
+function verifyJWT(request, response) {
   const token = jwt.decode(request);
-  console.log()
-  // const token = request.headers;
-  // jwt.verify(token, SECRET, (err, decoded) => {
-  //   if (err) return response.status(401).end();
-  //   return decoded.userToken;
+  const idUser = parseInt(token.result.map((value) => value.iduser));
+  if(idUser != undefined)
+  return idUser;
+
+  return response.status(401).end();
   };
 
 
 app.post("/registrosDeServicos", (request, response) => {
   const { userToken } = request.body;
-  const re = verifyJWT(userToken);
+  const iduser = verifyJWT(userToken);
   const { name } = request.body;
   const { profession } = request.body;
   const { city } = request.body;
@@ -36,20 +37,21 @@ app.post("/registrosDeServicos", (request, response) => {
   const { numberTel } = request.body;
   const { description } = request.body;
 
-  // let SQL = `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
+  let SQL = `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
 
-  // dataBase.query(
-  //   SQL,
-  //   [iduser, name, profession, city, city2, numberTel, description],
-  //   (err, result) => {
-  //     if (err) console.log(err);
-  //     else response.send(result);
-  //   }
-  // );
+  dataBase.query(
+    SQL,
+    [iduser, name, profession, city, city2, numberTel, description],
+    (err, result) => {
+      if (err) console.log(err);
+      else response.send(result);
+    }
+  );
 });
 
 app.post("/getCards", (request, response) => {
-  const { iduser } = request.body;
+  const { userToken } = request.body;
+  const iduser = verifyJWT(userToken);
 
   let SQL = "SELECT * FROM services WHERE ? = iduser";
 
@@ -79,16 +81,15 @@ app.post("/resultados", (request, response) => {
 
 app.post("/registrarAvaliacao", (request, response) => {
   const { idService } = request.body;
-  const { username } = request.body;
+  const { userName } = request.body;
   const { comment } = request.body;
   const { avaliation } = request.body;
   if (avaliation != 0) {
-    let SQL =
-      "INSERT INTO avaliations (idService, username, comment, avaliation) VALUES (?, ?, ?, ?)";
+    let SQL = "INSERT INTO avaliations (idservice, username, comment, avaliation) VALUES (?, ?, ?, ?)";
 
     dataBase.query(
       SQL,
-      [idService, username, comment, avaliation],
+      [idService, userName, comment, avaliation],
       (err, result) => {
         if (err) console.log(err);
         else response.send(result);
@@ -97,11 +98,22 @@ app.post("/registrarAvaliacao", (request, response) => {
   } else response.send("");
 });
 
+app.post("/getUserName" , (request, response) => {
+  const { userToken } = request.body;
+  const idUser = verifyJWT(userToken);
+
+  let SQL = "SELECT username FROM users WHERE ? = iduser";
+
+  dataBase.query(SQL, [idUser], (err, result) => {
+    if(err) console.log(err);
+    else response.send(result);
+  })
+})
+
 app.post("/getAvaliations", (request, response) => {
   const { idService } = request.body;
 
-  let SQL =
-    "SELECT idavaliation, username, comment, avaliation FROM avaliations WHERE ? = idservice";
+  let SQL = "SELECT idavaliation, username, comment, avaliation FROM avaliations WHERE ? = idservice";
 
   dataBase.query(SQL, [idService], (err, result) => {
     if (err) console.log(err);
@@ -121,13 +133,13 @@ app.post("/getEmailUsuario", (request, response) => {
 
 app.post("/registroUsuario", (request, response) => {
   const { userName } = request.body;
-  const { emailRegister } = request.body;
-  const { passwordRegister } = request.body;
+  const { email } = request.body;
+  const { password } = request.body;
 
   let SQL = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
   dataBase.query(
     SQL,
-    [userName, emailRegister, passwordRegister],
+    [userName, email, password],
     (err, result) => {
       if (err) console.log(err);
       else response.send(result);
