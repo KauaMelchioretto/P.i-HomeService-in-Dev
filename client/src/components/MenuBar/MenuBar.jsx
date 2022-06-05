@@ -9,6 +9,12 @@ export default function MenuBar() {
   const token = useSelector(({rootReducer: {login : {token}}}) => token);
   const auth = useAuth();
 
+  const onLogout = async () => {
+    auth.logout(token);
+    navigate("/inicio");
+    console.log(token)
+  }
+
   const withoutAuthentication = (
     <ul>
       <li>
@@ -37,7 +43,7 @@ export default function MenuBar() {
         </button>
       </li>
       <li>
-        <button onClick={() => auth.logout(token)} id="menu--items">
+        <button onClick={() => onLogout()} id="menu--items">
           Sair
         </button>
       </li>

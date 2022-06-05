@@ -20,8 +20,8 @@ export default function UserRegister() {
     const email = values.email;
     const password = values.password;
     const verify = await verifyUserEmail(email);
-    verify == true ? window.alert("Email já cadastrado!") : await registerUser(userName, email, password); 
-    clearInputs();
+    verify == false ? window.alert("Email já cadastrado!") : await registerUser(userName, email, password); 
+     clearInputs();
     }
   }
 
@@ -39,36 +39,6 @@ export default function UserRegister() {
       handleClickRegisterUser();
     }
   };
-  // const registerUser = () => {
-  //   if (validation(values)) {
-  //     Axios.post("http://localhost:3001/getEmailUsuario", {
-  //       emailRegister: values.emailRegister,
-  //     }).then((response) => {
-  //       const data = JSURL.stringify(response.data);
-  //       if (data != "~(~)") {
-  //         window.alert("Email já cadastrado!");
-  //       } else {
-  //         if (validation(values)) {
-  //           Axios.post("http://localhost:3001/registroUsuario", {
-  //             userName: values.userName,
-  //             emailRegister: values.emailRegister,
-  //             passwordRegister: values.passwordRegister,
-  //           }).then((response) => {
-  //             if (response) {
-  //               setValues({
-  //                 userName: "",
-  //                 emailRegister: "",
-  //                 passwordRegister: "",
-  //                 passwordConfirmation: "",
-  //               });
-  //             }
-  //             window.alert("Cadastrado com sucesso!");
-  //           });
-  //         }
-  //       }
-  //     });
-  //   }
-  // };
 
   const validation = () => {
     var message = "";

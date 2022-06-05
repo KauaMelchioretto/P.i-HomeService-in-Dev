@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import ResultScreen from "./pages/ResultPage";
 import InitScreen from "./pages/InitPage";
-import RegisterScreen from "./pages/RegisterScreen";
+import RegisterPage from "./pages/RegisterPage";
 import ServiceScreen from "./pages/ServicePage";
 import LoginPage from "./pages/LoginPage";
 import UserRegister from "./components/Registers/UserRegister";
@@ -29,7 +29,7 @@ function App() {
                 path="/registrosDeServicos"
                 element={
                   <RequireAuth>
-                    <RegisterScreen />
+                    <RegisterPage />
                   </RequireAuth>
                 }
               />

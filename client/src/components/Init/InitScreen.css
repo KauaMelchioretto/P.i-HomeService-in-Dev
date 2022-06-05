@@ -25,8 +25,8 @@
 
 .search--icon {
   position: absolute;
-  left: 78%;
-  margin-top: 5.3%;
+  left: 77%;
+  top: 33.5%;
   padding: 15px;
   background-image: url(../../img/search_icon.svg);
   background-repeat: no-repeat;
@@ -52,21 +52,21 @@
   background-color:#8a2be2;
 }
 
+.input--field {
+  width: 90%;
+}
+
 .fast--search {
   left: 20vw;
   background-color: #ffffff;
   width: 61%;
   border-radius: 20px;
   box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2);
-  bottom: -10rem;
+  bottom: -9rem;
   position: relative;
   display: table;
   padding: none;
   text-align: center;
-}
-
-.input--field {
-  width: 90%;
 }
 
 #fast-button-search {
@@ -95,3 +95,6 @@
   cursor: pointer;
 }
 
+  body{
+    min-width: 390px;
+  }

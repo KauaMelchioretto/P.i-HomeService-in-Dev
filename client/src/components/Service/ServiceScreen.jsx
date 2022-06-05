@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ServiceScreen.css";
 import { NavLink } from "react-router-dom";
-import Axios from "axios";
 import { Rating } from "primereact/rating";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
@@ -11,9 +10,11 @@ import MenuBar from "../../components/MenuBar/MenuBar";
 import CardAvaliation from "../../components/Cards/CardAvaliation";
 import { getUserName, registerAvaliation } from "../../services/Registers/Registers";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function ServiceScreen() {
   const [value, setValue] = useState(0);
+  const [stars, setStars] = useState(5);
   const [avaliations, setAvaliations] = useState({});
   const [details] = useQueryParam("detailsProfessional");
   const [listAvaliations, setListAvaliations] = useState();
@@ -42,31 +43,33 @@ export default function ServiceScreen() {
     const idService = details.id;
     const comment = avaliations.comment;
     const avaliation = value;
-    const userName = await getUserName(userToken);
-    // userName != undefined ? await registerAvaliation(idService, userName, comment, avaliation) : window.alert("Faça login para registrar uma avaliação!");
-    // clearAvaliations();
+    const username = await getUserName(userToken);
+    username != undefined ? await registerAvaliation(idService, username, comment, avaliation) : window.alert("Faça login para registrar uma avaliação!");
+    clearAvaliations();
     }
   }
 
   const clearAvaliations = () => {
+    //falta arrumar
     setAvaliations({
       comment: ""
     }); setValue({
-      value: 1,
+      value: 0,
+    }); setStars ({
       stars: 5,
     });
   }
 
-  // useEffect(() => {
-  //   Axios.post("http://localhost:3001/getAvaliations", {
-  //     idService: details.id,
-  //   }).then((response) => {
-  //     setListAvaliations(response.data);
-  //   });
-  // }, [listAvaliations]);
+  useEffect(() => {
+    axios.post("http://localhost:3001/getAvaliations", {
+      idService: details.id,
+    }).then((response) => {
+      setListAvaliations(response.data);
+    });
+  }, [listAvaliations]);
 
   return (
-    <div>
+    <div className="main--container">
       <MenuBar/>
       <header className="header--container">
         <h1 className="title">Home Service</h1>
@@ -86,10 +89,6 @@ export default function ServiceScreen() {
         ></CardService>
       }
 
-      <div>
-        <NavLink to="/avaliacao"> Avaliação </NavLink>
-      </div>
-
       <div className="Avaliations">
         <div>
           <h1 className="title">Home Service</h1>
@@ -102,24 +101,24 @@ export default function ServiceScreen() {
               value={value}
               cancel={false}
               onChange={(e) => setValue(e.value)}
-              stars={5}
+              stars={stars}
             />
           </div>
 
           <div>
-            <div className="box-register">
+            <div>
               <textarea
                 placeholder="Digite seu comentário"
                 name="comment"
                 rows="5"
                 cols="20"
                 wrap="hard"
-                className="input--field"
+                className="input--field--avaliation"
                 onChange={changeAvaliations}
                 value={avaliations.comment}
               />
             </div>
-            <button onClick={() => handleClickAvaliation()}>
+            <button type="button" onClick={() => handleClickAvaliation()}>
               Registrar Avaliação
             </button>
           </div>

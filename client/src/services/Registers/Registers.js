@@ -5,26 +5,26 @@ var httpAgent = Axios.create({
   });
 
   export async function getUserName(userToken) {
-    if(userToken != undefined) {
+    if(userToken != "") {
+      var result =
       await httpAgent.post("http://localhost:3001/getUserName", {
         userToken,
-      }).then((response) => {
-        const data = response.data;
-        const username = data.map((value) => value.username);
-        const l = parseInt(username);
-        console.log(l);
-      return response;
-    });
-    } else return false;
+      });
+      result = result.data.map((value) => value.username);
+      var username = JSON.stringify(result);
+      username = username.replace(/[[\]\\"]/g, ''); //
+      return username;
+      
+    } return undefined;
   }
 
-  export async function registerAvaliation(idService, userName, comment, avaliation) {
-      await httpAgent.post("http://localhost:3001/registrarAvaliacao", {
-        userName,
+  export async function registerAvaliation(idService, username, comment, avaliation) {
+        await httpAgent.post("http://localhost:3001/registrarAvaliacao", {
         idService,
+        username,
         comment,
         avaliation,
-      }); window.alert("Avaliação registrada com sucesso!");
+      });
     }
 
    export async function registerService(userToken, name, profession, city, city2,numberTel, description) {
@@ -40,14 +40,15 @@ var httpAgent = Axios.create({
       }
 
     export async function verifyUserEmail(email) {
+      const verify =
       await httpAgent.post("http://localhost:3001/getEmailUsuario", {
         email,
-      }).then((response) => {
-        if (response != "~(~)") 
-          return true;
-        else
-        return false;
-      });  
+      });
+        if (verify.data.length === 0) {
+           return true;
+        }
+         else
+           return false;
     }
 
     export async function registerUser(userName, email, password) {

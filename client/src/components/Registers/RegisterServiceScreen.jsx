@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./RegisterScreen.css";
+import "./RegisterServiceScreen.css";
 import Axios from "axios";
 import CardRegister from "../Cards/CardRegister";
 import MenuBar from "../MenuBar/MenuBar";
 import { registerService } from "../../services/Registers/Registers";
 import { useSelector } from "react-redux";
 
-export default function RegisterScreen() {
+export default function RegisterServiceScreen() {
   const token = useSelector(({rootReducer: {login : {token}}}) => token);
   const [listServices, setListServices] = useState();
   const [values, setValues] = useState({

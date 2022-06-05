@@ -1,3 +1,6 @@
+.main--container {
+    display: block;
+}
 
 #back--button{
     background-color: black;
@@ -7,7 +10,7 @@
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
-    margin-left: 60%;
+    margin-left: 5%;
 }
 
 .wpp--number{
@@ -20,30 +23,33 @@
 .Avaliations
 {
     background-color: rgb(255,255,255);
-    width: 70vw ;
+    width: 80vw;
     height: max-content;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 150%;
-    left: 15%;
+    top: 120%;
+    left: 10%;
     flex-direction: column;
     display: flex;
 }
 
 .rating--section
 {
+    position: relative;
     display: block;
     margin-bottom: 50%;
-    width: 70%;
+    width: 50%;
 }
 
 
-.TextArea{
+.input--field--avaliation{
+    position: relative;
+    width: 100%;
     border: 1px solid rgb(0, 0, 0);
-    resize: none;
 }
+
 .p-rating .p-rating-icon.pi-star-fill{
     
     color: #ffc629 !important;
@@ -54,26 +60,32 @@
     align-items: center;
     padding: 15px;
 }
-.service--informations
-{
-    background-color: rgb(255,255,255);
-    width: 50%;
-    height: 40vw;
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
-    align-items: center;
-    position: relative;
-    justify-content:center;
-    font-size: 20px;
-    flex-direction: column;
-    margin-top: 10%;
-    display: flex;
-}
 
 .card--service {
     display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
+    background-color: rgb(255,255,255);
+    width: 85%;
+    left: 10%;
+    right: 10%;
+}
+
+.service--informations
+{
+    background-color: rgb(255,255,255);
+    align-items:flex-start;
+    width: 80%;
+    position: relative;
+    font-size: 20px;
+    flex-direction: column;
+    display: flex;
+}
+
+.content {
+    font-size: 25px;
+    position: relative;
+    height: max-content;
+    margin: 5%;
 }
 
 p {

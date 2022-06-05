@@ -22,7 +22,7 @@ function verifyJWT(request, response) {
   const idUser = parseInt(token.result.map((value) => value.iduser));
   if(idUser != undefined)
   return idUser;
-
+  else
   return response.status(401).end();
   };
 
@@ -81,21 +81,17 @@ app.post("/resultados", (request, response) => {
 
 app.post("/registrarAvaliacao", (request, response) => {
   const { idService } = request.body;
-  const { userName } = request.body;
+  const { username } = request.body;
   const { comment } = request.body;
   const { avaliation } = request.body;
-  if (avaliation != 0) {
-    let SQL = "INSERT INTO avaliations (idservice, username, comment, avaliation) VALUES (?, ?, ?, ?)";
 
-    dataBase.query(
-      SQL,
-      [idService, userName, comment, avaliation],
-      (err, result) => {
+  let SQL = "INSERT INTO avaliations (idservice, username, comment, avaliation) VALUES (?, ?, ?, ?)"
+
+    dataBase.query(SQL, [idService, username, comment, avaliation], (err, result) => {
         if (err) console.log(err);
         else response.send(result);
       }
     );
-  } else response.send("");
 });
 
 app.post("/getUserName" , (request, response) => {
@@ -122,10 +118,10 @@ app.post("/getAvaliations", (request, response) => {
 });
 
 app.post("/getEmailUsuario", (request, response) => {
-  const { emailRegister } = request.body;
+  const { email } = request.body;
 
   let SQL = "SELECT email FROM users WHERE ? = email";
-  dataBase.query(SQL, [emailRegister], (err, result) => {
+  dataBase.query(SQL, [email], (err, result) => {
     if (err) console.log(err);
     else response.send(result);
   });

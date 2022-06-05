@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../Result/ResultScreen.css";
 import * as JSURL from "jsurl";
 import { useNavigate } from "react-router-dom";
+import "./CardResult.css"
 
 export default function CardResult(props) {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function CardResult(props) {
 
   { 
     return (
-      <div className="card--container">
+      <div className="card--result">
         <h1 className="card--name">Nome: {props.name}</h1>
         <p className="card--profession">Profissão: {props.profession}</p>
         <p className="card--city">Cidade: {props.city}</p>

@@ -1,13 +1,15 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./InitScreen.css";
 import Axios from "axios";
 import MenuBar from "../MenuBar/MenuBar";
 import * as JSURL from "jsurl";
 import { useSelector } from "react-redux";
+import { getUserName } from "../../services/Registers/Registers";
 
 export default function InitScreen() {
   const [values, setValues] = useState({});
+  const [user, setUser] = useState();
   const navigate = useNavigate();
   const token = useSelector(({rootReducer: {login : {token}}}) => token);
 
@@ -50,12 +52,20 @@ export default function InitScreen() {
     }
   };
 
+  useEffect(async () => {
+    if(token != undefined){
+    var username = await getUserName(token);
+    setUser(username);
+    } else setUser("");
+  });
+
   {
     return (
       <div className="container">
         <MenuBar></MenuBar>
         <header className="header--container">
           <h1 className="title">Home Service</h1>
+          <h2>Bem vindo {user} !</h2>
           <input
             className="search--input"
             data-ls-module="charCounter"
