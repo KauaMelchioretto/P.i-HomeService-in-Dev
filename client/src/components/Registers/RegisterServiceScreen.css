@@ -1,91 +1,102 @@
-.Registro
-{
-    text-align: center;
+.Registro {
+  text-align: center;
 }
 
-.title
-{
-    font-size: 40px;
-    padding: 10px 20px;
+.title {
+  font-size: 40px;
+  padding: 10px 20px;
 }
 
-.custom--section
-{
-    bottom: -8rem;
-    margin-top: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-    position: relative;
+.custom--section {
+  bottom: -8rem;
+  margin-top: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  position: relative;
 }
 
-form
-{
-    background-color: white;
-    border-radius: 20px;
-    padding: 60px;
-    font-family: Arial;
-    color: black;
-    position: absolute;
-    margin-bottom: 20px;
-    width: 50%;
+form {
+  background-color: white;
+  border-radius: 20px;
+  padding: 60px;
+  font-family: Arial;
+  color: black;
+  position: absolute;
+  margin-bottom: 20px;
+  width: 50%;
 }
 
-form div
-{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
 }
 
-textarea
-{
-    max-width: 600px;
-    max-height: max-content;
+textarea {
+  max-width: 600px;
+  max-height: max-content;
 }
 
-form input, form textarea
-{
-    outline: unset;
-    padding: 20px;
-    width: 600px;
-    border: 1px solid rgb(189, 189, 189);
-    border-radius: 10px;
+form input,
+form textarea {
+  outline: unset;
+  padding: 20px;
+  width: 600px;
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 10px;
 }
 
-form input:focus, form textarea:focus
-{
-    background-color: #c79cf0;
+form input:focus,
+form textarea:focus {
+  background-color: #c79cf0;
 }
 
-.buttons
-{
-    flex-wrap: nowrap;
-    display: inline;
-    position: relative;
-    text-align: center;
-    margin-top: 7%;
+.buttons {
+  flex-wrap: nowrap;
+  display: inline;
+  position: relative;
+  text-align: center;
+  margin-top: 7%;
 }
 
-.action--buttons
-{
-    color: #fff;
-    background-color: black;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px;
-    transition: all ease 0.3s;
-    position: relative;
-    margin-left: 20%;
+.action--buttons {
+  color: #fff;
+  background-color: black;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  transition: all ease 0.3s;
+  position: relative;
+  margin-left: 20%;
 }
 
 .services--title {
-    text-align: center;
-    margin-top: 60vh;
+  text-align: center;
+  margin-top: 60vh;
 }
 
 .Card {
-    margin-top: 10%;
+  margin-top: 10%;
+}
+
+.service--card {
+    width: 45%;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: start;
+    margin-bottom: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-top: 5%;
+}
+
+.service--card:hover {
+    background-color: #c79cf0;
 }

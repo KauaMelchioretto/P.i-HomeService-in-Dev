@@ -194,7 +194,7 @@ export default function RegisterServiceScreen() {
         <h1>Seus serviços cadastrados</h1>
       </div>
 
-      <div className="Card">
+      <div className="service--card">
         {typeof listServices !== "undefined" &&
           listServices.map((values) => {
             return (

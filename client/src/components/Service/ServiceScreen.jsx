@@ -38,15 +38,17 @@ export default function ServiceScreen() {
   };
 
   const handleClickAvaliation = async () => {
-    if(validation(value)){
-    const userToken = token;
-    const idService = details.id;
-    const comment = avaliations.comment;
-    const avaliation = value;
-    const username = await getUserName(userToken);
-    username != undefined ? await registerAvaliation(idService, username, comment, avaliation) : window.alert("Faça login para registrar uma avaliação!");
-    clearAvaliations();
-    }
+    if(token != undefined) {
+      if(validation(value)){
+      const userToken = token;
+      const idService = details.id;
+      const comment = avaliations.comment;
+      const avaliation = value;
+      const username = await getUserName(userToken);
+      await registerAvaliation(idService, username, comment, avaliation);
+      clearAvaliations();
+      }
+    } else window.alert("Faça login para registrar uma avaliação!");
   }
 
   const clearAvaliations = () => {
