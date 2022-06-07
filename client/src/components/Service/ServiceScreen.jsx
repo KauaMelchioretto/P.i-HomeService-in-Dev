@@ -5,10 +5,10 @@ import { Rating } from "primereact/rating";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import useQueryParam from "../../hooks/useQueryParam";
-import CardService from "../../components/Cards/CardService";
-import MenuBar from "../../components/MenuBar/MenuBar";
-import CardAvaliation from "../../components/Cards/CardAvaliation";
-import { getUserName, registerAvaliation } from "../../services/Registers/Registers";
+import CardService from "../cards/CardService";
+import MenuBar from "../menubar/MenuBar";
+import CardAvaliation from "../cards/CardAvaliation";
+import { getUserName, registerAvaliation } from "../../services/registers/Registers";
 import { useSelector } from "react-redux";
 import axios from "axios";
 

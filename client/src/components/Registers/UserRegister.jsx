@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import MenuBar from "../MenuBar/MenuBar";
+import MenuBar from "../menubar/MenuBar";
 import Axios from "axios";
 import "./Forms.css";
 import * as JSURL from "jsurl";
-import { registerUser, verifyUserEmail } from "../../services/Registers/Registers";
+import { registerUser, verifyUserEmail } from "../../services/registers/Registers";
 export default function UserRegister() {
   const [values, setValues] = useState({});
 

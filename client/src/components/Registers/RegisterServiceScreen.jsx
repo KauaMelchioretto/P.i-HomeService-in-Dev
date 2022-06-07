@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./RegisterServiceScreen.css";
 import Axios from "axios";
-import CardRegister from "../Cards/CardRegister";
-import MenuBar from "../MenuBar/MenuBar";
-import { registerService } from "../../services/Registers/Registers";
+import CardRegister from "../cards/CardRegister";
+import MenuBar from "../menubar/MenuBar";
+import { registerService } from "../../services/registers/Registers";
 import { useSelector } from "react-redux";
 
 export default function RegisterServiceScreen() {
@@ -202,7 +202,7 @@ export default function RegisterServiceScreen() {
                 key={values.id}
                 listCard={listServices}
                 setListServices={setListServices}
-                id={values.id}
+                id={values.idservice}
                 name={values.name}
                 profession={values.profession}
                 city={values.city}

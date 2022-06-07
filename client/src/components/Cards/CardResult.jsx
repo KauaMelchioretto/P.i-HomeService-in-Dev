@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Result/ResultScreen.css";
+import "../result/ResultScreen.css";
 import * as JSURL from "jsurl";
 import { useNavigate } from "react-router-dom";
 import "./CardResult.css"

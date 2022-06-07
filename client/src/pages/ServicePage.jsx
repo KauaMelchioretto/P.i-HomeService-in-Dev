@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ServiceScreen from "../components/Service/ServiceScreen";
+import ServiceScreen from "../components/service/ServiceScreen";
 
 export default function ServicePage() {
   return (

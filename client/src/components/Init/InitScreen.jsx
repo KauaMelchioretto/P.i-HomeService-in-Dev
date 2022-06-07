@@ -2,10 +2,10 @@ import { React, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./InitScreen.css";
 import Axios from "axios";
-import MenuBar from "../MenuBar/MenuBar";
+import MenuBar from "../menubar/MenuBar";
 import * as JSURL from "jsurl";
 import { useSelector } from "react-redux";
-import { getUserName } from "../../services/Registers/Registers";
+import { getUserName } from "../../services/registers/Registers";
 
 export default function InitScreen() {
   const [values, setValues] = useState({});

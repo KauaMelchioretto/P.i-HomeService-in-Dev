@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import MenuBar from "../MenuBar/MenuBar";
+import MenuBar from "../menubar/MenuBar";
 import { NavLink, useNavigate } from "react-router-dom";
 import { login } from "../../services/login"
-import "../Registers/Forms.css";
+import "../registers/Forms.css";
 import { useSelector } from "react-redux";
 
 export default function Singin({ callback }) {

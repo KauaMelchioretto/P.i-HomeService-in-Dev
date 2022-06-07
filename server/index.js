@@ -37,13 +37,13 @@ app.post("/registrosDeServicos", (request, response) => {
   const { numberTel } = request.body;
   const { description } = request.body;
 
-  let SQL = `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
+  let SQL = `INSERT INTO services (idservice, iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
 
   dataBase.query(
     SQL,
     [iduser, name, profession, city, city2, numberTel, description],
     (err, result) => {
-      if (err) console.log(err);
+      if(err) console.log(err);
       else response.send(result);
     }
   );
@@ -56,7 +56,7 @@ app.post("/getCards", (request, response) => {
   let SQL = "SELECT * FROM services WHERE ? = iduser";
 
   dataBase.query(SQL, [iduser], (err, result) => {
-    if (err) console.log(err);
+    if(err) console.log(err);
     else response.send(result);
   });
 });
@@ -70,7 +70,7 @@ app.post("/resultados", (request, response) => {
       SQL,
       [information, information, information, information],
       (err, result) => {
-        if (err) console.log(err);
+        if(err) console.log(err);
         else response.send(result);
       }
     );
@@ -88,7 +88,7 @@ app.post("/registrarAvaliacao", (request, response) => {
   let SQL = "INSERT INTO avaliations (idservice, username, comment, avaliation) VALUES (?, ?, ?, ?)"
 
     dataBase.query(SQL, [idService, username, comment, avaliation], (err, result) => {
-        if (err) console.log(err);
+        if(err) console.log(err);
         else response.send(result);
       }
     );
@@ -112,7 +112,7 @@ app.post("/getAvaliations", (request, response) => {
   let SQL = "SELECT idavaliation, username, comment, avaliation FROM avaliations WHERE ? = idservice";
 
   dataBase.query(SQL, [idService], (err, result) => {
-    if (err) console.log(err);
+    if(err) console.log(err);
     else response.send(result);
   });
 });
@@ -122,7 +122,7 @@ app.post("/getEmailUsuario", (request, response) => {
 
   let SQL = "SELECT email FROM users WHERE ? = email";
   dataBase.query(SQL, [email], (err, result) => {
-    if (err) console.log(err);
+    if(err) console.log(err);
     else response.send(result);
   });
 });
@@ -137,7 +137,7 @@ app.post("/registroUsuario", (request, response) => {
     SQL,
     [userName, email, password],
     (err, result) => {
-      if (err) console.log(err);
+      if(err) console.log(err);
       else response.send(result);
     }
   );
@@ -150,14 +150,29 @@ app.post("/login", (request, response) => {
 
   let SQL = "SELECT iduser FROM users WHERE ? = email AND ? = password";
   dataBase.query(SQL, [email, password], (err, result) => {
-    if (err) console.log(err);
+    if(err) console.log(err);
     else token = jwt.sign({ result }, SECRET, { expiresIn: "1h" });
     if(result.length !== 0) response.send({ auth: true, token, result });
     else response.send("");
   });
 });
 
+app.put("/editService", (request, response) => {
+  const { id } = request.body;
+  const { name } = request.body;
+  const { profession } = request.body;
+  const city = request.body.city;
+  const city2 = request.body.city2;
+  const numberTel  = request.body.numberTel;
+  const description = request.body.description;
 
+  let SQL = "UPDATE services SET name = ?, profession = ?, city = ?, city2 = ?, numberTel = ?, description = ?WHERE idservice = ?"
+
+  dataBase.query(SQL, [name, profession, city, city2, numberTel, description, id], (err, result) => {
+    if(err) console.log(err);
+    else response.send(result);
+  })
+});
 
 
 app.listen(3001, () => {
