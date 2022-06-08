@@ -16,3 +16,13 @@ export async function editService(id, name, profession, city, city2, numberTel, 
         description,
     }); return result;
 }
+
+export async function deleteService(id) {
+    const result =
+    await httpAgent.delete(`http://localhost:3001/deleteService/${id}`);
+}
+
+export async function deleteAvaliationService(id) {
+    const result = 
+    await httpAgent.delete(`http://localhost:3001/deleteAvaliation/${id}`);
+}

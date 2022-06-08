@@ -26,7 +26,6 @@ function verifyJWT(request, response) {
   return response.status(401).end();
   };
 
-
 app.post("/registrosDeServicos", (request, response) => {
   const { userToken } = request.body;
   const iduser = verifyJWT(userToken);
@@ -37,7 +36,7 @@ app.post("/registrosDeServicos", (request, response) => {
   const { numberTel } = request.body;
   const { description } = request.body;
 
-  let SQL = `INSERT INTO services (idservice, iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
+  let SQL = `INSERT INTO services (iduser, name, profession, city, city2, numberTel, description) VALUES ( ?, ?, ?, ?, ?, ?, ?)`;
 
   dataBase.query(
     SQL,
@@ -127,6 +126,7 @@ app.post("/getEmailUsuario", (request, response) => {
   });
 });
 
+
 app.post("/registroUsuario", (request, response) => {
   const { userName } = request.body;
   const { email } = request.body;
@@ -174,6 +174,25 @@ app.put("/editService", (request, response) => {
   })
 });
 
+app.delete("/deleteAvaliation/:id", (request, response) => {
+  const { id } = request.params.id;
+
+  let SQL = "DELETE FROM avaliations WHERE idservice = ?"
+  dataBase.query(SQL, [id], (err, result) => {
+    if(err) console.log(err);
+    else response.send(result);
+  });
+});
+
+app.delete("/deleteService/:id", (request, response) => {
+  const { id } = request.params;
+  
+  let SQL = "DELETE FROM services WHERE idservice = ?"
+  dataBase.query(SQL, [id], (err, result) => {
+    if(err) console.log(err);
+    else response.send(result);
+  });
+});
 
 app.listen(3001, () => {
   console.log("rodando server");

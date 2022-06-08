@@ -13,6 +13,7 @@ export default function InitScreen() {
   const navigate = useNavigate();
   const token = useSelector(({rootReducer: {login : {token}}}) => token);
 
+  console.log(token);
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({
       ...prevValue,

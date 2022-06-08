@@ -19,7 +19,7 @@ export default function UserRegister() {
     const userName = values.userName;
     const email = values.email;
     const password = values.password;
-    const verify = await verifyUserEmail(email);
+    const verify =  await verifyUserEmail(email);
     verify == false ? window.alert("Email já cadastrado!") : await registerUser(userName, email, password); 
      clearInputs();
     }

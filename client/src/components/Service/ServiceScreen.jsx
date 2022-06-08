@@ -45,7 +45,7 @@ export default function ServiceScreen() {
       const comment = avaliations.comment;
       const avaliation = value;
       const username = await getUserName(userToken);
-      await registerAvaliation(idService, username, comment, avaliation);
+      username != null ?  await registerAvaliation(idService, username, comment, avaliation) : window.alert("Faça login para registrar uma avaliação!");
       clearAvaliations();
       }
     } else window.alert("Faça login para registrar uma avaliação!");
@@ -120,7 +120,7 @@ export default function ServiceScreen() {
                 value={avaliations.comment}
               />
             </div>
-            <button type="button" onClick={() => handleClickAvaliation()}>
+            <button className="avaliate--button" type="button" onClick={() => handleClickAvaliation()}>
               Registrar Avaliação
             </button>
           </div>

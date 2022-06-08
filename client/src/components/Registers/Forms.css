@@ -4,6 +4,7 @@
   justify-content: center;
   height: 80vh;
   position: relative;
+  top: 10vh;
 }
 
 .register--button {

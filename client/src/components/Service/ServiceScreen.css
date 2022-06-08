@@ -88,6 +88,18 @@
     margin: 5%;
 }
 
+.avaliate--button {
+    color: #fff;
+    background-color: black;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    transition: all ease 0.3s;
+    position: relative;
+    margin-left: 2%;
+  }
+
 p {
     position: relative;
 }

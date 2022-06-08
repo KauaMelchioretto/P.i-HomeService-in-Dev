@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 export default function RegisterServiceScreen() {
   const token = useSelector(({rootReducer: {login : {token}}}) => token);
   const [listServices, setListServices] = useState();
+  const [showServices, setShowServices] = useState(false);
   const [values, setValues] = useState({
     name: "",
     profession: "",
@@ -81,12 +82,14 @@ export default function RegisterServiceScreen() {
       description: "",
     });
   };
-    
-  useEffect(() => {
-    Axios.post("http://localhost:3001/getCards", {
+
+  
+  useEffect(async () => {
+    await Axios.post("http://localhost:3001/getCards", {
       userToken: token,
     }).then((response) => {
       setListServices(response.data);
+      setShowServices(true);
     });
   }, [listServices]);
 

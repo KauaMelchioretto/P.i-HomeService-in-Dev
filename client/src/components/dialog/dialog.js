@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import { Dialog } from "@material-ui/core";
@@ -6,9 +6,11 @@ import { DialogActions } from "@material-ui/core";
 import { DialogContent } from "@material-ui/core";
 import { DialogTitle } from "@material-ui/core";
 import "./dialog.css";
-import Axios from "axios";
-import produce from "immer";
-import { editService } from "../../services/servicesFunctions/services";
+import {
+  deleteAvaliationService,
+  deleteService,
+  editService,
+} from "../../services/servicesFunctions/services";
 
 export default function FormDialog(props) {
   const [editValues, setEditValues] = useState({
@@ -69,6 +71,7 @@ export default function FormDialog(props) {
         numberTel,
         description
       );
+      window.alert("Salvo com sucesso!");
       handleClose();
       if (result != null) {
         listingCard();
@@ -77,7 +80,6 @@ export default function FormDialog(props) {
   };
 
   const listingCard = () => {
-    props.setListCard(
       props.listCard.map((value) => {
         return value.id == editValues.id
           ? {
@@ -91,18 +93,20 @@ export default function FormDialog(props) {
             }
           : value;
       })
-    );
   };
 
-  const handleDeleteService = () => {
-    Axios.delete(`http://localhost:3001/delete/${editValues.id}`).then(() => {
+  const handleDeleteService = async () => {
+    const avaliationResult = await deleteAvaliationService(editValues.id);
+    const serviceResult = await deleteService(editValues.id);
+    if (avaliationResult == undefined && serviceResult == undefined) {
+      window.alert("Serviço excluído com sucesso!");
+      handleClose();
       props.setListCard(
         props.listCard.filter((value) => {
           return value.id != editValues.id;
         })
       );
-    });
-    handleClose();
+    }
   };
 
   return (
