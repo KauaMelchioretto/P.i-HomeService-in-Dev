@@ -13,7 +13,7 @@ function AuthProvider({ children }) {
             if(token != undefined){
             dispatch(allActions.doSetLogin({token}));
             callback();
-            } else window.alert("E-mail ou senha não correspondem!")
+            } 
     };
 
     let logout = (callback) => {

@@ -4,21 +4,28 @@ import store from "../redux/store/index";
 
 var httpAgent = Axios.create({
   baseURL: "http://localhost:3001/",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+  withCredentials: true,
 });
+httpAgent.defaults.withCredentials = true;
 
 export async function login(email, password) {
-  const {
-    data: { token },
-  } = await httpAgent.post("http://localhost:3001/login", {
-    email,
-    password,
-  });
-  return token;
+    const data = await httpAgent.post("http://localhost:3001/login", {
+      email,
+      password,
+    });
+    if (data.data.token != undefined) 
+     return data.data.token;
+
+    else window.alert("Email ou senha incorretos!");
 }
 
 export async function logout({ token }) {
   try {
-    store.dispatch(allActions.doResetLogin({token}))
+    store.dispatch(allActions.doResetLogin({ token }));
   } catch (error) {
     console.log("[Error] - logout", error);
     return false;

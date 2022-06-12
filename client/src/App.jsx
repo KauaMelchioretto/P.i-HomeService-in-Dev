@@ -11,7 +11,7 @@ import InitScreen from "./pages/InitPage";
 import RegisterPage from "./pages/RegisterPage";
 import ServiceScreen from "./pages/ServicePage";
 import LoginPage from "./pages/LoginPage";
-import UserRegister from "./components/registers/UserRegister"
+import UserRegister from "./components/registers/UserRegister";
 import { AuthProvider } from "./containers/PrivateContainer";
 import RequireAuth from "./containers/RequireAuth";
 

@@ -8,7 +8,7 @@ import useQueryParam from "../../hooks/useQueryParam";
 import CardService from "../cards/CardService";
 import MenuBar from "../menubar/MenuBar";
 import CardAvaliation from "../cards/CardAvaliation";
-import { getUserName, registerAvaliation } from "../../services/registers/Registers";
+import { registerAvaliation } from "../../services/registers/Registers";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -18,7 +18,8 @@ export default function ServiceScreen() {
   const [avaliations, setAvaliations] = useState({});
   const [details] = useQueryParam("detailsProfessional");
   const [listAvaliations, setListAvaliations] = useState();
-  const token = useSelector(({rootReducer: {login : {token}}}) => token);
+  var cookieToken;
+  var token = useSelector(({rootReducer: {login : {token}}}) => token);
 
   const changeAvaliations = (value) => {
     setAvaliations((prevValue) => ({
@@ -37,6 +38,13 @@ export default function ServiceScreen() {
     return true;
   };
 
+  useEffect(async () => {
+    cookieToken = await axios.get("http://localhost:3001/getcookie");
+    const data = JSON.stringify(cookieToken.data.token);
+    if(cookieToken.data.token != undefined) {
+    token = data.replace(/[{}"]/g, '');
+   }}); 
+
   const handleClickAvaliation = async () => {
     if(token != undefined) {
       if(validation(value)){
@@ -44,8 +52,7 @@ export default function ServiceScreen() {
       const idService = details.id;
       const comment = avaliations.comment;
       const avaliation = value;
-      const username = await getUserName(userToken);
-      username != null ?  await registerAvaliation(idService, username, comment, avaliation) : window.alert("Faça login para registrar uma avaliação!");
+      userToken != undefined ?  await registerAvaliation(idService, userToken, comment, avaliation) : window.alert("Faça login para registrar uma avaliação!");
       clearAvaliations();
       }
     } else window.alert("Faça login para registrar uma avaliação!");

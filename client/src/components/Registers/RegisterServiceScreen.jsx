@@ -5,6 +5,7 @@ import CardRegister from "../cards/CardRegister";
 import MenuBar from "../menubar/MenuBar";
 import { registerService } from "../../services/registers/Registers";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function RegisterServiceScreen() {
   const token = useSelector(({rootReducer: {login : {token}}}) => token);
@@ -19,6 +20,8 @@ export default function RegisterServiceScreen() {
     numberTel: "",
     description: "",
   });
+
+  axios.defaults.withCredentials = true;
 
   const changeValues = (value) => {
     setValues((prevValue) => ({
@@ -85,13 +88,15 @@ export default function RegisterServiceScreen() {
 
   
   useEffect(async () => {
+    const cookieToken = await axios.get("http://localhost:3001/getcookie");
     await Axios.post("http://localhost:3001/getCards", {
-      userToken: token,
+      userToken : cookieToken.data.token != undefined ? cookieToken.data.token : token,
     }).then((response) => {
       setListServices(response.data);
       setShowServices(true);
     });
   }, [listServices]);
+
 
   return (
     <div>

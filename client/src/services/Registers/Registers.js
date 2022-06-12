@@ -1,27 +1,31 @@
 import Axios from "axios";
 
 var httpAgent = Axios.create({
-    baseURL: "http://localhost:3001/",
-  });
+  baseURL: "http://localhost:3001/",
+  headers: {
+    "Content-Type": "application/json",
+    Accept: "application/json",
+  },
+  withCredentials: true,
+});
+httpAgent.defaults.withCredentials = true;
 
-  export async function getUserName(userToken) {
-    if(userToken != "") {
-      var result =
-      await httpAgent.post("http://localhost:3001/getUserName", {
-        userToken,
-      });
-      result = result.data.map((value) => value.username);
-      var username = JSON.stringify(result);
-      username = username.replace(/[[\]\\"]/g, ''); //
-      return username;
-      
-    } return undefined;
-  }
+export async function getUserName(userToken) {
+  var userToken = await (await httpAgent.get("http://localhost:3001/getcookie")).data.token;
+  if(userToken != undefined) {
+    var username =
+    await httpAgent.post("/getUserName", {
+      userToken,
+    });
+    return username.data;
+    
+  } return undefined;
+}
 
-  export async function registerAvaliation(idService, username, comment, avaliation) {
+  export async function registerAvaliation(idService, userToken, comment, avaliation) {
         await httpAgent.post("http://localhost:3001/registrarAvaliacao", {
         idService,
-        username,
+        userToken,
         comment,
         avaliation,
       });

@@ -6,14 +6,20 @@ import MenuBar from "../menubar/MenuBar";
 import * as JSURL from "jsurl";
 import { useSelector } from "react-redux";
 import { getUserName } from "../../services/registers/Registers";
+import { login } from "../../services/login";
 
 export default function InitScreen() {
   const [values, setValues] = useState({});
   const [user, setUser] = useState();
   const navigate = useNavigate();
-  const token = useSelector(({rootReducer: {login : {token}}}) => token);
+  const token = useSelector(
+    ({
+      rootReducer: {
+        login: { token },
+      },
+    }) => token
+  );
 
-  console.log(token);
   const handleChangeValues = (value) => {
     setValues((prevValue) => ({
       ...prevValue,
@@ -54,9 +60,9 @@ export default function InitScreen() {
   };
 
   useEffect(async () => {
-    if(token != undefined){
-    var username = await getUserName(token);
-    setUser(username);
+    if (token != undefined) {
+      var username = await getUserName(token);
+      setUser(username);
     } else setUser("");
   });
 
