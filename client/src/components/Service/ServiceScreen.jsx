@@ -11,6 +11,7 @@ import CardAvaliation from "../cards/CardAvaliation";
 import { registerAvaliation } from "../../services/registers/Registers";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useAuth } from "../../hooks/auth";
 
 export default function ServiceScreen() {
   const [value, setValue] = useState(0);
@@ -18,6 +19,7 @@ export default function ServiceScreen() {
   const [avaliations, setAvaliations] = useState({});
   const [details] = useQueryParam("detailsProfessional");
   const [listAvaliations, setListAvaliations] = useState();
+  const auth = useAuth();
   var cookieToken;
   var token = useSelector(({rootReducer: {login : {token}}}) => token);
 
@@ -46,7 +48,7 @@ export default function ServiceScreen() {
    }}); 
 
   const handleClickAvaliation = async () => {
-    if(token != undefined) {
+    if(token != undefined && auth.user != null) {
       if(validation(value)){
       const userToken = token;
       const idService = details.id;

@@ -9,26 +9,33 @@ axios.defaults.withCredentials = true;
 
 export default function MenuBar() {
   const navigate = useNavigate();
-  var token = useSelector(({rootReducer: {login : {token}}}) => token);
+  var token = useSelector(
+    ({
+      rootReducer: {
+        login: { token },
+      },
+    }) => token
+  );
   const auth = useAuth();
   var cookieToken;
 
   const onLogout = async () => {
-   var res = axios.get("http://localhost:3001/clearcookie");
-   console.log(res)
+    var res = axios.get("http://localhost:3001/clearcookie");
     auth.logout(token);
     navigate("/inicio");
-  }
-
+  };
+  
   //Realize login to stay session.
   useEffect(async () => {
-   cookieToken = await axios.get("http://localhost:3001/getcookie");
-   const data = JSON.stringify(cookieToken.data.token);
-   if(cookieToken.data.token != undefined) {
-   token = data.replace(/[{}"]/g, '');
-   if(auth.user == null) 
-   auth.login(token);
-  }}); 
+    if (auth.user == null) {
+      cookieToken = await axios.get("http://localhost:3001/getcookie");
+      const data = JSON.stringify(cookieToken.data.token);
+      if (cookieToken.data.token != undefined) {
+        token = data.replace(/[{}"]/g, "");
+        auth.login(token);
+      }
+    }
+  });
 
   const withoutAuthentication = (
     <ul>
@@ -53,7 +60,10 @@ export default function MenuBar() {
         </button>
       </li>
       <li>
-        <button onClick={() => navigate("/registrosDeServicos")} id="menu--items">
+        <button
+          onClick={() => navigate("/registrosDeServicos")}
+          id="menu--items"
+        >
           Cadastre seu serviço
         </button>
       </li>
@@ -64,5 +74,9 @@ export default function MenuBar() {
       </li>
     </ul>
   );
-  return <nav id="menu--nav">{token ? withAuthentication : withoutAuthentication}</nav>;
+  return (
+    <nav id="menu--nav">
+      {token ? withAuthentication : withoutAuthentication}
+    </nav>
+  );
 }
