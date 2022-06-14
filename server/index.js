@@ -4,14 +4,13 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const { response } = require("express");
 const SECRET = "password";
 
 const dataBase = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "senha",
-  database: "crudservices",
+  host: "us-cdbr-east-05.cleardb.net",
+  user: "bf11e650684986",
+  password: "ea084074",
+  database: "heroku_3bb06900a2cf28a",
 });
 
 app.use(cors({ credentials:true , origin: "http://localhost:3000"}));
@@ -224,6 +223,10 @@ app.delete("/deleteService/:id", (request, response) => {
   });
 });
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log("rodando server");
 });
+
+if(process.env.NODE_ENV == 'production') {
+  app.use(express.static('client/build'))
+}
